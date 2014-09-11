@@ -2,6 +2,9 @@ mfp
 ==============
 A third-party API for accessing MyFitnessPal diary data
 
+[![Circle CI](https://circleci.com/gh/andrewzey/mfp.svg?style=shield&circle-token=e1f56bff19b1519adb77480cbb13550a0d3028e8)](https://circleci.com/gh/andrewzey/mfp)
+
+
 ## Installation
 
   npm install mfp --save
