@@ -1,0 +1,37 @@
+{
+  "name": "mfp",
+  "version": "0.0.0",
+  "description": "A third-party API for accessing MyFitnessPal diary data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/andrewzey/mfp.git"
+  },
+  "keywords": [
+    "MyFitnessPal",
+    "mfp",
+    "my",
+    "fitness",
+    "pal",
+    "food",
+    "diary"
+  ],
+  "author": "Andrew Zey <andrew@andrewzey.com> (http://andrewzey.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewzey/mfp/issues"
+  },
+  "homepage": "https://github.com/andrewzey/mfp",
+  "dependencies": {
+    "cheerio": "^0.17.0",
+    "request": "^2.42.0"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "gulp-mocha": "^1.1.0",
+    "mocha": "^1.21.4"
+  }
+}
