@@ -2,9 +2,10 @@ mfp
 ==============
 A third-party API for accessing MyFitnessPal diary data
 
+[![NPM](http://img.shields.io/npm/v/mfp.svg)](https://www.npmjs.org/package/mfp)
 [![Circle CI](https://circleci.com/gh/andrewzey/mfp.svg?style=shield&circle-token=e1f56bff19b1519adb77480cbb13550a0d3028e8)](https://circleci.com/gh/andrewzey/mfp)
-[![Coverage Status](https://coveralls.io/repos/andrewzey/mfp/badge.png?branch=master)](https://coveralls.io/r/andrewzey/mfp?branch=master)
-[![Dependency Checker](https://david-dm.org/andrewzey/mfp.png)](https://david-dm.org/andrewzey/mfp)
+[![Coverage Status](http://img.shields.io/coveralls/andrewzey/mfp.svg)](https://coveralls.io/r/andrewzey/mfp?branch=master)
+[![Dependency Checker](http://img.shields.io/david/andrewzey/mfp.svg)](https://david-dm.org/andrewzey/mfp)
 
 ## Installation
 
