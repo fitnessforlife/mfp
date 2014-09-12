@@ -8,34 +8,104 @@ A third-party API for accessing MyFitnessPal diary data
 
 ## Installation
 
-  npm install mfp --save
+```
+npm install mfp --save
+```
 
 ## Usage
 
-  var mfp = require('mfp');
-  var fetchSingleDate = mfp.fetchSingleDate
+```
+var mfp = require('mfp');
+```
 
-## Tests
+### Fetch Single Date
 
-  npm test
+```
+var fetchSingleDate = mfp.fetchSingleDate;
 
-## Global Dependencies
-npm
-gulp
+fetchSingleDate('azey47', '20140708', ['calories', 'protein', 'carbs', 'fat'], function(data){
+  console.log(data);
+});
+
+
+// ARGUMENTS - ALL REQUIRED
+// 1. MyFitnessPal User ID (type: string)
+// 2. date (type: string; format: 'YYYYMMDD')
+// 3. data fields (type: array of strings; format: data fields must match names on MFP)
+// 4. callback, which has access to object in this format:
+//      {field1: number, field2: number, field3: number, etc...}
+```
 
 ## Local Dependencies
-mocha
-chai
-gulp 3.4.0 (latest version supported by CircleCI as of 2014-09-11)
+- request (latest)
+- cheerio (latest)
+
 
 ## Contributing
 
-In lieu of a formal styleguide, take care to maintain the existing coding style.
-Global "strict mode" is enabled for this project.
-Add unit tests for any new or changed functionality. Lint and test your code.
+**Feel free to contribute with any of the items in the backlog.**
+
+**To Contribute via Issue Notice:**
+
+- Write up a description of the problem
+- I will write a fix correspondingly
+
+**To Contribute via Pull Request:**
+
+- Fork the repo
+
+- In lieu of a formal styleguide, take care to maintain the existing coding style.
+
+  - Global "strict mode" is enabled for this project.
+  - Commits should be prefixed appropriately:
+    - New Features: (feat)
+    - Bug Fixes: (fix)
+    - Documentation: (doc)
+    - Refactoring and Code Cleanup: (refact)
+
+- Add unit tests for any new or changed functionality. Write tests in the appropriate spec file in the `test` directory
+
+- Submit a pull request to master branch
+
+## Development Dependencies
+
+####Global
+- gulp (>= 3.4.0)
+
+####Local
+- mocha (latest)
+- chai (latest)
+- coveralls (latest)
+- gulp (3.4.0 - latest version supported by CircleCI as of 2014-09-12)
+- gulp-mocha (latest)
+- gulp-istanbul (latest)
+- gulp-jshint (latest)
+- jshint-stylish (latest)
+
+## Tests
+
+### Run JSHint Linting
+```
+gulp lint
+```
+
+### Run Tests
+```
+gulp test
+```
+
+### Automatically lint and test on source file changes
+```
+gulp watch
+```
+
+
+
 
 ## Release History
 
-* 0.1.0 Initial release
+* 0.1.0 Initial release, fetchSingleDate()
 
 ## Backlog
+* add 'fetchDateRange' function
+* add ability to set username once before calling fetch functions
