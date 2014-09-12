@@ -8,5 +8,5 @@ dependencies:
 
 test:
   override:
-    - mocha test/*.js
+    - npm run test
     - npm run coveralls
