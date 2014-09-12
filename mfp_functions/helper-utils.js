@@ -8,11 +8,11 @@ var convertToNum = function(string){
 };
 
 var mfpUrl = function(userId, date){
-  date = date.slice(0,4) + '-' + date.slice(4,6) + '-' + date.slice(6,8);
-  return 'http://www.myfitnesspal.com/food/diary/' +
-         userId +
-         '?date=' +
-         date;
+  if (typeof userId !== "string") throw new TypeError("User ID must be 'string'");
+  if (typeof date !== "string") throw new TypeError("Date must be 'string'");
+  if (date.match(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/) === null) throw new Error("Date must be formatted as valid 'YYYY-MM-DD'");
+
+  return 'http://www.myfitnesspal.com/food/diary/' + userId + '?date=' + date;
 };
 
 module.exports = {
