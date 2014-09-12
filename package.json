@@ -4,7 +4,8 @@
   "description": "A third-party API for accessing MyFitnessPal diary data",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "gulp test",
+    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
@@ -34,13 +35,10 @@
     "coveralls": "^2.11.1",
     "gulp": "3.4.0",
     "gulp-coveralls": "^0.1.3",
+    "gulp-istanbul": "^0.3.0",
+    "gulp-jshint": "^1.8.4",
     "gulp-mocha": "^1.1.0",
-    "mocha": "^1.21.4",
-    "mocha-lcov-reporter": "0.0.1"
-  },
-  "config": {
-    "blanket": {
-      "pattern": "tests/*.js"
-    }
+    "jshint-stylish": "^0.4.0",
+    "mocha": "^1.21.4"
   }
 }
