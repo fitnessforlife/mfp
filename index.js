@@ -1,11 +1,9 @@
-//requirements
+'use strict';
+
 var request = require('request');
 var cheerio = require('cheerio');
-var fetchSingleDate = require('./mfp_functions/fetchSingleDate.js');
-var fetchDateRange = require('./mfp_functions/fetchDateRange.js');
+var diaryStatusCheck = require('./mfp_functions/diaryStatusCheck.js');
 
-//exported mfp functions
 module.exports = {
-  fetchSingleDate: fetchSingleDate,
-  fetchDateRange: fetchDateRange
+  diaryStatusCheck: diaryStatusCheck
 };

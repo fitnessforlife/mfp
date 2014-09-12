@@ -18,22 +18,12 @@ npm install mfp --save
 var mfp = require('mfp');
 ```
 
-### Fetch Single Date
+### Diary Status Check
 
 ```
-var fetchSingleDate = mfp.fetchSingleDate;
+var check = mfp.diaryStatusCheck;
 
-fetchSingleDate('azey47', '20140708', ['calories', 'protein', 'carbs', 'fat'], function(data){
-  console.log(data);
-});
-
-
-// ARGUMENTS - ALL REQUIRED
-// 1. MyFitnessPal User ID (type: string)
-// 2. date (type: string; format: 'YYYYMMDD')
-// 3. data fields (type: array of strings; format: data fields must match names on MFP)
-// 4. callback, which has access to object in this format:
-//      {field1: number, field2: number, field3: number, etc...}
+check('username'); // returns "public", "private", "nonexistent"
 ```
 
 ## Local Dependencies
@@ -99,13 +89,10 @@ gulp test
 gulp watch
 ```
 
-
-
-
 ## Release History
 
-* 0.1.0 Initial release, fetchSingleDate()
+* 0.1.0 Initial release, diaryStatusCheck()
 
 ## Backlog
+* add 'fetchSingleDate' function
 * add 'fetchDateRange' function
-* add ability to set username once before calling fetch functions
