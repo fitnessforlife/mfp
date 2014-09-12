@@ -13,7 +13,7 @@ var diaryStatusCheck = function(username, callback){
 
     var $ = cheerio.load(body);
 
-    if ($('body').text() === 'Invalid username') {
+    if (body === 'Invalid username' || body === 'Invalid username\n') {
       callback('invalid user');
     }
 
