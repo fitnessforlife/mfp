@@ -31,8 +31,11 @@
   },
   "devDependencies": {
     "chai": "^1.9.1",
+    "coveralls": "^2.11.1",
     "gulp": "3.4.0",
+    "gulp-coveralls": "^0.1.3",
     "gulp-mocha": "^1.1.0",
-    "mocha": "^1.21.4"
+    "mocha": "^1.21.4",
+    "mocha-lcov-reporter": "0.0.1"
   }
 }
