@@ -1,3 +1,5 @@
+'use strict';
+
 var should = require('chai').should();
 
 var convertToNum = require('../mfp_functions/helper-utils.js').convertToNum;

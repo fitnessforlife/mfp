@@ -1,3 +1,5 @@
+'use strict';
+
 var should = require('chai').should();
 
 var fetchDateRange = require('../index.js').fetchDateRange;
