@@ -21,9 +21,11 @@ var mfp = require('mfp');
 ### Diary Status Check
 
 ```
-var check = mfp.diaryStatusCheck;
-
-check('username'); // returns "public", "private", "nonexistent"
+mfp.diaryStatusCheck('username', function(status) {
+  //do something
+  //status will be 'public', 'private', 'invalid user'
+  console.log(status);
+});
 ```
 
 ## Local Dependencies
