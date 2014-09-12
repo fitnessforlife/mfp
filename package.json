@@ -37,5 +37,10 @@
     "gulp-mocha": "^1.1.0",
     "mocha": "^1.21.4",
     "mocha-lcov-reporter": "0.0.1"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "tests/*.js"
+    }
   }
 }

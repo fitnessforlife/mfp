@@ -4,8 +4,7 @@ var coveralls = require('gulp-coveralls');
 
 gulp.task('test', function(){
   return gulp.src('tests/*.js', {read: false})
-  .pipe(mocha({reporter: 'mocha-lcov-reporter'}))
-  .pipe(coveralls());
+  .pipe(mocha({reporter: 'spec'}));
 });
 
 gulp.task('watch', function(){
