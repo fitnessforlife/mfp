@@ -6,7 +6,7 @@ var should = require('chai').should();
 var convertToNum = require('../mfp_functions/helper-utils.js').convertToNum;
 var mfpUrl = require('../mfp_functions/helper-utils.js').mfpUrl;
 
-var nonStringTypes = [true, [], {}, null, undefined, 1234];
+var nonStringTypes = [true, [], {}, null, 1234];
 
 describe('convertToNum', function(){
   it('should be a function', function(){
@@ -42,6 +42,10 @@ describe('mfpUrl', function(){
 
   it('should construct a proper url when given a username and date', function(){
     (mfpUrl('azey47', '2014-07-08')).should.equal('http://www.myfitnesspal.com/food/diary/azey47?date=2014-07-08');
+  });
+
+  it('should construct a proper url when only given a username', function(){
+    (mfpUrl('azey47')).should.equal('http://www.myfitnesspal.com/food/diary/azey47');
   });
 
   it('should throw an error for non-string username inputs', function(){
