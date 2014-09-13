@@ -95,6 +95,7 @@ gulp watch
 ## Release History
 
 * 0.1.0 Initial release, diaryStatusCheck()
+* 0.1.1 Update documentation, badges/shields 
 
 ## Backlog
 * add 'fetchSingleDate' function
