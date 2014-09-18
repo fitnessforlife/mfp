@@ -155,7 +155,8 @@ gulp watch
 
 * 0.1.0 Initial release, diaryStatusCheck()
 * 0.1.1 Update documentation, badges/shields
+* 0.2.0 Add fetchSingleDate function
 
 # Backlog
-* add 'fetchSingleDate' function
-* add 'fetchDateRange' function
+* add `fetchDateRange` function
+* add `apiStatusCheck` function
