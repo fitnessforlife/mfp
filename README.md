@@ -7,34 +7,93 @@ A third-party API for accessing MyFitnessPal diary data
 [![Coverage Status](http://img.shields.io/coveralls/andrewzey/mfp.svg)](https://coveralls.io/r/andrewzey/mfp?branch=master)
 [![Dependency Checker](http://img.shields.io/david/andrewzey/mfp.svg)](https://david-dm.org/andrewzey/mfp)
 
-## Installation
+# Installation
 
 ```
 npm install mfp --save
 ```
 
-## Usage
+# Usage
 
 ```
 var mfp = require('mfp');
 ```
 
-### Diary Status Check
+## mfp.diaryStatusCheck(username, callback)
+Asynchronously checks the privacy status of a user's food diary.
+
+- username `String`
+- callback `Function`
+  - the callback is passed a single argument `status`, which will be a `String`
+with the following possible values:
+    - 'public'
+    - 'private'
+    - 'invalid user'
+
+Example:
 
 ```
 mfp.diaryStatusCheck('username', function(status) {
-  //do something
-  //status will be 'public', 'private', 'invalid user'
   console.log(status);
 });
 ```
 
-## Local Dependencies
+
+
+## mfp.fetchSingleDate(username, date, [fields], callback)
+Asynchronously scrapes nutrient data from a user's food diary on a given date.
+- username `String`
+- date `String` with format YYYY-MM-DD
+- fields `String` or `Array`
+  - `String` 'all', which will fetch data for all nutrient fields
+  - `Array` of nutrient field names, each a `String`. Allowable field names:
+    - 'calories'
+    -	'carbs'
+    - 'fat'
+    - 'protein'
+    - 'saturated fat'
+    - 'polyunsaturated fat'
+    - 'monounsaturated fat'
+    - 'trans fat'
+    - 'cholesterol'
+    - 'sodium'
+    - 'potassium'
+    - 'carbohydrates'
+    - 'fiber'
+    - 'sugar'
+    - 'vitamin a'
+    - 'vitamin c'
+    - 'calcium'
+    - 'iron'
+- callback `Function`
+  - the callback is passed a single argument `data`, which will be an `Object`
+  whose keys are the nutrient field names and values are each a `Number`.
+  Eg. `{ 'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 }`
+
+
+Example 1:
+
+```
+mfp.fetchSingleDate('username', '2014-09-15', 'all', function(data){
+  console.log(data);
+});
+```
+
+Example 2:
+
+```
+mfp.fetchSingleDate('username', '2014-09-15', ['calories', 'protein', 'carbs', 'fat'], function(data){
+  console.log(data);
+});
+```
+
+
+# Local Dependencies
 - request (latest)
 - cheerio (latest)
 
 
-## Contributing
+# Contributing
 
 **Feel free to contribute with any of the items in the backlog.**
 
@@ -60,7 +119,7 @@ mfp.diaryStatusCheck('username', function(status) {
 
 - Submit a pull request to master branch
 
-## Development Dependencies
+# Development Dependencies
 
 ####Global
 - gulp (>= 3.4.0)
@@ -75,7 +134,7 @@ mfp.diaryStatusCheck('username', function(status) {
 - gulp-jshint (latest)
 - jshint-stylish (latest)
 
-## Tests
+# Tests
 
 ### Run JSHint Linting
 ```
@@ -92,11 +151,11 @@ gulp test
 gulp watch
 ```
 
-## Release History
+# Release History
 
 * 0.1.0 Initial release, diaryStatusCheck()
-* 0.1.1 Update documentation, badges/shields 
+* 0.1.1 Update documentation, badges/shields
 
-## Backlog
+# Backlog
 * add 'fetchSingleDate' function
 * add 'fetchDateRange' function
