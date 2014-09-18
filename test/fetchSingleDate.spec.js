@@ -11,7 +11,7 @@ describe('fetchSingleDate', function(){
     (typeof fetchSingleDate).should.equal('function');
   });
 
-  it('should return an object with correct nutrient data', function(){
+  it('should return an object with all available nutrient data', function(){
     nock("http://www.myfitnesspal.com")
       .get("/food/diary/npmmfp?date=2014-09-13")
       .replyWithFile(200, __dirname + '/mocks/diary-public.html');
@@ -29,34 +29,19 @@ describe('fetchSingleDate', function(){
      (data).should.deep.equal(expected);
     });
   });
-  //
-  // it('should pass a "private" string to a callback when accessing a private diary', function(){
-  //   nock("http://www.myfitnesspal.com")
-  //     .get("/food/diary/npmmfp")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-private.html');
-  //
-  //   diaryStatusCheck('npmmfp', function(status){
-  //     (status).should.equal('private');
-  //   });
-  // });
-  //
-  // it('should pass a "private" string to a callback when accessing a password-protected diary', function(){
-  //   nock("http://www.myfitnesspal.com")
-  //     .get("/food/diary/npmmfp")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-password.html');
-  //
-  //   diaryStatusCheck('npmmfp', function(status){
-  //     (status).should.equal('private');
-  //   });
-  // });
-  //
-  // it('should pass an "invalid user" string to a callback when accessing a diary that doesn\'t exist', function(){
-  //   nock("http://www.myfitnesspal.com")
-  //     .get("/food/diary/asldfjkb3498a")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-invalid.html');
-  //
-  //   diaryStatusCheck('asldfjkb3498a', function(status){
-  //     (status).should.equal('invalid user');
-  //   });
-  // });
+
+  it('should return an object with only user specified nutrient data', function(){
+    nock("http://www.myfitnesspal.com")
+      .get("/food/diary/npmmfp?date=2014-09-13")
+      .replyWithFile(200, __dirname + '/mocks/diary-public.html');
+
+    var expected = {
+      calories: 2078,
+      fat: 119
+    };
+
+    fetchSingleDate('npmmfp', '2014-09-13', ['calories', 'fat'], function(data){
+     (data).should.deep.equal(expected);
+    });
+  });
 });
