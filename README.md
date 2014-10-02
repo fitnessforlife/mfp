@@ -122,13 +122,13 @@ mfp.fetchSingleDate('username', '2014-09-15', ['calories', 'protein', 'carbs', '
 # Development Dependencies
 
 ####Global
-- gulp (>= 3.4.0)
+- gulp (latest)
 
 ####Local
 - mocha (latest)
 - chai (latest)
 - coveralls (latest)
-- gulp (3.4.0 - latest version supported by CircleCI as of 2014-09-12)
+- gulp (latest)
 - gulp-mocha (latest)
 - gulp-istanbul (latest)
 - gulp-jshint (latest)

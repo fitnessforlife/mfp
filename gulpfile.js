@@ -27,14 +27,12 @@ gulp.task('test', function(cb){
     ])
     .pipe( mocha({ reporter: 'spec' }) )
     .pipe( istanbul.writeReports() )
-    .on( 'end', function() {
-      process.exit( 0 );
-    });
+    .on( 'end', cb);
   });
 });
 
 gulp.task('coveralls', function(cb){
-  gulp.src('coverage/lcov.info')
+  return gulp.src('./coverage/lcov.info')
   .pipe(coveralls());
 });
 
