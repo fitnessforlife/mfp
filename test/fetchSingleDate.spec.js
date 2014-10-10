@@ -11,12 +11,33 @@ describe('fetchSingleDate', function(){
     (typeof fetchSingleDate).should.equal('function');
   });
 
+  it('should contain the correct diary date in the results object', function(){
+    nock("http://www.myfitnesspal.com")
+      .get("/food/diary/npmmfp?date=2014-09-13")
+      .replyWithFile(200, __dirname + '/mocks/diary-public.html');
+
+    var expected = {
+      date: '2014-09-13',
+      calories: 2078,
+      carbs: 98,
+      fat: 119,
+      protein: 153,
+      sodium: 3031,
+      sugar: 14
+    };
+
+    fetchSingleDate('npmmfp', '2014-09-13', 'all', function(data){
+     (data.date).should.equal(expected.date);
+    });
+  });
+
   it('should return an object with all available nutrient data', function(){
     nock("http://www.myfitnesspal.com")
       .get("/food/diary/npmmfp?date=2014-09-13")
       .replyWithFile(200, __dirname + '/mocks/diary-public.html');
 
     var expected = {
+      date: '2014-09-13',
       calories: 2078,
       carbs: 98,
       fat: 119,
@@ -36,6 +57,7 @@ describe('fetchSingleDate', function(){
       .replyWithFile(200, __dirname + '/mocks/diary-public.html');
 
     var expected = {
+      date: '2014-09-13',
       calories: 2078,
       fat: 119
     };

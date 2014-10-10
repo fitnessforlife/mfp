@@ -67,8 +67,8 @@ Asynchronously scrapes nutrient data from a user's food diary on a given date.
     - 'iron'
 - callback `Function`
   - the callback is passed a single argument `data`, which will be an `Object`
-  whose keys are the nutrient field names and values are each a `Number`.
-  Eg. `{ 'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 }`
+  whose keys are the nutrient field names and values are each a `Number`, as well as the date.
+  Eg. `{ 'date': '2014-10-05', 'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 }`
 
 
 Example 1:
@@ -116,19 +116,16 @@ Asynchronously scrapes nutrient data from a user's food diary on a given date.
 - callback `Function`
   - the callback is passed a single argument `data`, which will be an `Object`
   with the following format:
-  Eg. { username: 'exampleUser',
-        data: {
-          2014-07-05: {
-            'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 }`
-          },
-          2014-07-06: {
-            'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 }`
-          },
-          2014-07-07: {
-            'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 }`
-          }
-        }
-      }
+  Eg.
+  ```
+  { username: 'exampleUser',
+    data: [
+      { 'date': '2014-07-05', 'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 },
+      { 'date': '2014-07-06', 'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 },
+      { 'date': '2014-07-07', 'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 }
+    ]
+  }
+  ```
 
 
 Example 1:
