@@ -213,7 +213,9 @@ gulp watch
 * 0.1.0 Initial release, diaryStatusCheck()
 * 0.1.1 Update documentation, badges/shields
 * 0.2.0 Add fetchSingleDate function
+* 0.3.0 Add fetchDateRange function. Add 'date' parameter to fetchSingleDate results.
 
 # Backlog
-* add `fetchDateRange` function
+* add `exportJSON` function
+* add `exportCSV` function
 * add `apiStatusCheck` function
