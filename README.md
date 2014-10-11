@@ -19,27 +19,6 @@ npm install mfp --save
 var mfp = require('mfp');
 ```
 
-## mfp.diaryStatusCheck(username, callback)
-Asynchronously checks the privacy status of a user's food diary.
-
-- username `String`
-- callback `Function`
-  - the callback is passed a single argument `status`, which will be a `String`
-with the following possible values:
-    - 'public'
-    - 'private'
-    - 'invalid user'
-
-Example:
-
-```
-mfp.diaryStatusCheck('username', function(status) {
-  console.log(status);
-});
-```
-
-
-
 ## mfp.fetchSingleDate(username, date, [fields], callback)
 Asynchronously scrapes nutrient data from a user's food diary on a given date.
 - username `String`
@@ -144,6 +123,53 @@ mfp.fetchDateRange('username', '2014-09-15', '2014-09-18', ['calories', 'protein
 });
 ```
 
+## mfp.diaryStatusCheck(username, callback)
+Asynchronously checks the privacy status of a user's food diary.
+
+- username `String`
+- callback `Function`
+  - the callback is passed a single argument `status`, which will be a `String`
+with the following possible values:
+    - 'public'
+    - 'private'
+    - 'invalid user'
+
+Example:
+
+```
+mfp.diaryStatusCheck('username', function(status) {
+  console.log(status);
+});
+```
+
+## mfp.apiStatusCheck(callback)
+Asynchronously checks to see if all the API functions work correctly. They may
+cease to work because MyFitnessPal can change the way they present data on their
+site at any time.
+
+- callback `Function`
+  - the callback is passed a single argument `errors`, which will be an `array`
+containing the following possible `string`s:
+    - 'diaryStatusCheck isn't working correctly for public profiles'
+    - 'diaryStatusCheck isn't working correctly for private profiles'
+    - 'diaryStatusCheck isn't working correctly for invalid usernames'
+    - 'fetchSingleDate with all nutrients isn't working correctly'
+    - 'fetchSingleDate with user-specified nutrients isn't working correctly'
+
+Example:
+
+```
+mfp.apiStatusCheck(function(errors) {
+  if (errors.length !== 0) {
+    errors.forEach(function(error){
+      console.log(error);
+    });
+  } else {
+    console.log("There aren't any errors!");
+  }
+});
+```
+
 
 # Local Dependencies
 - request (latest)
@@ -214,8 +240,8 @@ gulp watch
 * 0.1.1 Update documentation, badges/shields
 * 0.2.0 Add fetchSingleDate function
 * 0.3.0 Add fetchDateRange function. Add 'date' parameter to fetchSingleDate results.
+* 0.4.0 Add apiStatusCheck function
 
 # Backlog
 * add `exportJSON` function
 * add `exportCSV` function
-* add `apiStatusCheck` function
