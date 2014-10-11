@@ -67,8 +67,8 @@ Asynchronously scrapes nutrient data from a user's food diary on a given date.
     - 'iron'
 - callback `Function`
   - the callback is passed a single argument `data`, which will be an `Object`
-  whose keys are the nutrient field names and values are each a `Number`.
-  Eg. `{ 'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 }`
+  whose keys are the nutrient field names and values are each a `Number`, as well as the date.
+  Eg. `{ 'date': '2014-10-05', 'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 }`
 
 
 Example 1:
@@ -83,6 +83,63 @@ Example 2:
 
 ```
 mfp.fetchSingleDate('username', '2014-09-15', ['calories', 'protein', 'carbs', 'fat'], function(data){
+  console.log(data);
+});
+```
+
+## mfp.fetchDateRange(username, dateStart, dateEnd, [fields], callback)
+Asynchronously scrapes nutrient data from a user's food diary on a given date.
+- username `String`
+- dateStart `String` with format YYYY-MM-DD
+- dateEnd `String` with format YYYY-MM-DD
+- fields `String` or `Array`
+  - `String` 'all', which will fetch data for all nutrient fields
+  - `Array` of nutrient field names, each a `String`. Allowable field names:
+    - 'calories'
+    -	'carbs'
+    - 'fat'
+    - 'protein'
+    - 'saturated fat'
+    - 'polyunsaturated fat'
+    - 'monounsaturated fat'
+    - 'trans fat'
+    - 'cholesterol'
+    - 'sodium'
+    - 'potassium'
+    - 'carbohydrates'
+    - 'fiber'
+    - 'sugar'
+    - 'vitamin a'
+    - 'vitamin c'
+    - 'calcium'
+    - 'iron'
+- callback `Function`
+  - the callback is passed a single argument `data`, which will be an `Object`
+  with the following format:
+  Eg.
+  ```
+  { username: 'exampleUser',
+    data: [
+      { 'date': '2014-07-05', 'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 },
+      { 'date': '2014-07-06', 'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 },
+      { 'date': '2014-07-07', 'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 }
+    ]
+  }
+  ```
+
+
+Example 1:
+
+```
+mfp.fetchDateRange('username', '2014-09-15', '2014-09-18', 'all', function(data){
+  console.log(data);
+});
+```
+
+Example 2:
+
+```
+mfp.fetchDateRange('username', '2014-09-15', '2014-09-18', ['calories', 'protein', 'carbs', 'fat'], function(data){
   console.log(data);
 });
 ```
@@ -156,7 +213,9 @@ gulp watch
 * 0.1.0 Initial release, diaryStatusCheck()
 * 0.1.1 Update documentation, badges/shields
 * 0.2.0 Add fetchSingleDate function
+* 0.3.0 Add fetchDateRange function. Add 'date' parameter to fetchSingleDate results.
 
 # Backlog
-* add `fetchDateRange` function
+* add `exportJSON` function
+* add `exportCSV` function
 * add `apiStatusCheck` function
