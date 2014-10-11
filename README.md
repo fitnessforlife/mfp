@@ -162,9 +162,11 @@ Example:
 mfp.apiStatusCheck(function(errors) {
   if (errors.length !== 0) {
     errors.forEach(function(error){
-        console.log(error);
+      console.log(error);
     });
-  };
+  } else {
+    console.log("There aren't any errors!");
+  }
 });
 ```
 
