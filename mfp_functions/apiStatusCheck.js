@@ -52,7 +52,7 @@ var apiStatusCheck = function(callback){
   });
 
   //Check 3
-  diaryStatusCheck('asdfkjb3@#*ASasdf', function(status) {
+  diaryStatusCheck('asdfkjb3Abfdalk', function(status) {
     if (status !== 'invalid user') {
       errors.push("diaryStatusCheck isn't working correctly for invalid usernames");
     }
@@ -84,9 +84,9 @@ var apiStatusCheck = function(callback){
   });
 
   //Check 5
-  fetchSingleDate('npmmfp', '2014-09-13', ['calories', 'fat'], function(data){
+  fetchSingleDate('npmmfp', '2014-09-14', ['calories', 'fat'], function(data){
     var expected = {
-      date: '2014-09-13',
+      date: '2014-09-14',
       calories: 2078,
       fat: 119
     };
