@@ -50,6 +50,9 @@ var fetchSingleDate = function(username, date, fields, callback){
       }
     }
 
+    //add date to results object
+    results.date = date;
+
     callback(results);
   });
 };
