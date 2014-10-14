@@ -174,7 +174,7 @@ mfp.apiStatusCheck(function(errors) {
 # Local Dependencies
 - request (latest)
 - cheerio (latest)
-
+- chai (latest)
 
 # Contributing
 
@@ -209,7 +209,6 @@ mfp.apiStatusCheck(function(errors) {
 
 ####Local
 - mocha (latest)
-- chai (latest)
 - coveralls (latest)
 - gulp (latest)
 - gulp-mocha (latest)
@@ -242,6 +241,7 @@ gulp watch
 * 0.3.0 Add fetchDateRange function. Add 'date' parameter to fetchSingleDate results.
 * 0.4.0 Add apiStatusCheck function
 * 0.4.1 Fix Critical Bug: add fetchDateRange function and apiStatusCheck to index.js
+* 0.4.2 Fix Critical Bug: add chai as local dependency
 
 # Backlog
 * add `exportJSON` function
