@@ -241,6 +241,7 @@ gulp watch
 * 0.2.0 Add fetchSingleDate function
 * 0.3.0 Add fetchDateRange function. Add 'date' parameter to fetchSingleDate results.
 * 0.4.0 Add apiStatusCheck function
+* 0.4.1 Fix Critical Bug: add fetchDateRange function and apiStatusCheck to index.js
 
 # Backlog
 * add `exportJSON` function
