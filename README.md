@@ -243,6 +243,12 @@ gulp watch
 * 0.4.1 Fix Critical Bug: add fetchDateRange function and apiStatusCheck to index.js
 * 0.4.2 Fix Critical Bug: add chai as local dependency
 
+# Known Issues
+* apiStatusCheck test occasionally fails on "should pass an array with an error
+message when fetching user-specified nutrient data from a date doesn't work" test.
+Likely a callback timing error. Running `gulp test` once or twice afterwards makes
+the test pass.
+
 # Backlog
 * add `exportJSON` function
 * add `exportCSV` function
