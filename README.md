@@ -30,20 +30,10 @@ Asynchronously scrapes nutrient data from a user's food diary on a given date.
     -	'carbs'
     - 'fat'
     - 'protein'
-    - 'saturated fat'
-    - 'polyunsaturated fat'
-    - 'monounsaturated fat'
-    - 'trans fat'
     - 'cholesterol'
     - 'sodium'
-    - 'potassium'
-    - 'carbohydrates'
     - 'fiber'
     - 'sugar'
-    - 'vitamin a'
-    - 'vitamin c'
-    - 'calcium'
-    - 'iron'
 - callback `Function`
   - the callback is passed a single argument `data`, which will be an `Object`
   whose keys are the nutrient field names and values are each a `Number`, as well as the date.
@@ -242,6 +232,19 @@ gulp watch
 * 0.4.0 Add apiStatusCheck function
 * 0.4.1 Fix Critical Bug: add fetchDateRange function and apiStatusCheck to index.js
 * 0.4.2 Fix Critical Bug: add chai as local dependency
+* 0.5.0 Multiple Enhancements and Fixes:
+  - Refactored fetchSingleDate for 260% performance improvement
+  - Remove unsupported nutrient fields from fetchSingleDate and fetchDateRange:
+    - 'saturated fat'
+    - 'polyunsaturated fat'
+    - 'monounsaturated fat'
+    - 'trans fat'
+    - 'potassium'
+    - 'carbohydrates'
+    - 'vitamin a'
+    - 'vitamin c'
+    - 'calcium'
+    - 'iron'
 
 # Known Issues
 * apiStatusCheck test occasionally fails on "should pass an array with an error

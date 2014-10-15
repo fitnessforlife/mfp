@@ -5,8 +5,8 @@ var cheerio = require('cheerio');
 var helpers = require('./helper-utils');
 
 var fetchSingleDate = function(username, date, fields, callback){
-  //get MyFitnessPal URL (eg. 'http://www.myfitnesspal.com/food/diary/azey47)
-  var url = helpers.mfpUrl(username, date);
+  //get MyFitnessPal URL (eg. 'http://www.myfitnesspal.com/reports/printable_diary/azey47?from=2014-09-13&to=2014-07-13')
+  var url = helpers.mfpUrl(username, date, date);
 
   request(url, function(error, response, body) {
     if (error) throw error;
@@ -20,14 +20,16 @@ var fetchSingleDate = function(username, date, fields, callback){
     var cols = {};
 
     //find and set column numbers of nutrient fields
-    $('tfoot').find('tr').find('td').each(function(index, element){
+    $('thead').find('tr').find('td').each(function(index, element){
       var $element = $(element);
       var fieldName = $element.text().toLowerCase();
-      if (fieldName !== '') { cols[fieldName] = index; }
+      if (fieldName === "sugars") { fieldName = "sugar"; } // fixes MFP nutrient field name inconsistency
+      if (fieldName === "cholest") { fieldName = "cholesterol"; } // fixes MFP nutrient field name inconsistency
+      if (index !== 0) { cols[fieldName] = index; } //ignore first field, which just says "Foods"
     });
 
     //find row in MFP with nutrient totals
-    var $dataRow = $('tr.total:not(.alt, .remaining)');
+    var $dataRow = $('tfoot').find('tr');
 
     //store data for each field in results
     for (var field in cols) {
