@@ -41,11 +41,11 @@ describe('mfpUrl', function(){
   });
 
   it('should construct a proper url when given a username and date', function(){
-    (mfpUrl('azey47', '2014-07-08')).should.equal('http://www.myfitnesspal.com/food/diary/azey47?date=2014-07-08');
+    (mfpUrl('azey47', '2014-07-08', '2014-07-08')).should.equal('http://www.myfitnesspal.com/reports/printable_diary/azey47?from=2014-07-08&to=2014-07-08');
   });
 
   it('should construct a proper url when only given a username', function(){
-    (mfpUrl('azey47')).should.equal('http://www.myfitnesspal.com/food/diary/azey47');
+    (mfpUrl('azey47')).should.equal('http://www.myfitnesspal.com/reports/printable_diary/azey47');
   });
 
   it('should throw an error for non-string username inputs', function(){
@@ -56,12 +56,12 @@ describe('mfpUrl', function(){
 
   it('should throw an error for non-string date inputs', function(){
     for (var i = 0; i < nonStringTypes.length; i++) {
-      (function(){ mfpUrl( 'username', nonStringTypes[i] ); }).should.throw(TypeError, "Date must be 'string'");
+      (function(){ mfpUrl( 'username', nonStringTypes[i], nonStringTypes[i] ); }).should.throw(TypeError, "Date must be 'string'");
     }
   });
 
   it('should throw an error if date input is not formatted as valid yyyy-mm-dd', function(){
-    (function(){ mfpUrl('username', '2014-99-75'); }).should.throw(Error, "Date must be formatted as valid 'YYYY-MM-DD'");
-    (function(){ mfpUrl('username', '2014-07-04-abcd'); }).should.throw(Error, "Date must be formatted as valid 'YYYY-MM-DD'");
+    (function(){ mfpUrl('username', '2014-99-75', '2014-01-15'); }).should.throw(Error, "Date must be formatted as valid 'YYYY-MM-DD'");
+    (function(){ mfpUrl('username', '2014-07-04', '2014-07-04-abcd'); }).should.throw(Error, "Date must be formatted as valid 'YYYY-MM-DD'");
   });
 });

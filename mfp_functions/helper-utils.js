@@ -7,15 +7,17 @@ var convertToNum = function(string){
   return parseInt(string.split(',').join(''));
 };
 
-var mfpUrl = function(userId, date){
+var mfpUrl = function(userId, startDate, endDate){
   if (typeof userId !== "string") throw new TypeError("User ID must be 'string'");
 
-  if (date !== undefined) {
-    if (typeof date !== "string") throw new TypeError("Date must be 'string'");
-    if (date.match(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/) === null) throw new Error("Date must be formatted as valid 'YYYY-MM-DD'");
-    return 'http://www.myfitnesspal.com/food/diary/' + userId + '?date=' + date;
+  if (startDate !== undefined && endDate !== undefined) {
+    if (typeof startDate !== "string") throw new TypeError("Date must be 'string'");
+    if (typeof endDate !== "string") throw new TypeError("Date must be 'string'");
+    if (startDate.match(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/) === null) throw new Error("Date must be formatted as valid 'YYYY-MM-DD'");
+    if (endDate.match(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/) === null) throw new Error("Date must be formatted as valid 'YYYY-MM-DD'");
+    return 'http://www.myfitnesspal.com/reports/printable_diary/' + userId + '?from=' + startDate + '&to=' + endDate;
   } else {
-    return 'http://www.myfitnesspal.com/food/diary/' + userId;
+    return 'http://www.myfitnesspal.com/reports/printable_diary/' + userId;
   }
 
 };
