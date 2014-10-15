@@ -4,7 +4,7 @@ var should = require('chai').should();
 var nock = require('nock');
 var request = require('request');
 
-var apiStatusCheck = require('../mfp_functions/apiStatusCheck.js');
+var apiStatusCheck = require('../index.js').apiStatusCheck;
 
 describe('apiStatusCheck', function(){
   it('should be a function', function(){

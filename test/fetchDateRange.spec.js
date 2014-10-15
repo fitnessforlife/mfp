@@ -4,7 +4,7 @@ var should = require('chai').should();
 var nock = require('nock');
 var request = require('request');
 
-var fetchDateRange = require('../mfp_functions/fetchDateRange.js');
+var fetchDateRange = require('../index.js').fetchDateRange;
 
 describe('fetchDateRange', function(){
   it('should be a function', function(){

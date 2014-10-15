@@ -4,7 +4,7 @@ var should = require('chai').should();
 var nock = require('nock');
 var request = require('request');
 
-var fetchSingleDate = require('../mfp_functions/fetchSingleDate.js');
+var fetchSingleDate = require('../index.js').fetchSingleDate;
 
 describe('fetchSingleDate', function(){
   it('should be a function', function(){

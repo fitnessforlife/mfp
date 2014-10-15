@@ -4,7 +4,7 @@ var should = require('chai').should();
 var nock = require('nock');
 var request = require('request');
 
-var diaryStatusCheck = require('../mfp_functions/diaryStatusCheck.js');
+var diaryStatusCheck = require('../index.js').diaryStatusCheck;
 
 describe('diaryStatusCheck', function(){
   it('should be a function', function(){
