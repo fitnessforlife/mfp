@@ -2,7 +2,11 @@
 
 var convertToNum = function(string){
   if (typeof string !== "string") throw new TypeError("Input type must be 'string'");
-  if (string.match(/^[-,0-9]+$/) === null) throw new Error('Input string must only contain numbers and commas');
+
+  //ignore any characters that aren't numbers or commas
+  var newString = string.replace(/[^0-9\.]+/g, '');
+
+  if (newString.match(/^[-,0-9]+$/) === null) throw new Error('Input string must contain numbers');
 
   return parseInt(string.split(',').join(''));
 };

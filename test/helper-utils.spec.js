@@ -22,15 +22,19 @@ describe('convertToNum', function(){
     (convertToNum('1,000,000')).should.equal(1000000);
   });
 
-  it('should throw an error for non-string inputs', function(){
+  it ('should convert strings of numbers with units to numbers', function(){
+    (convertToNum('5,600mg')).should.equal(5600);
+    (convertToNum('70g')).should.equal(70);
+  });
+
+  it('should throw an error if input is not a string', function(){
     for (var i = 0; i < nonStringTypes.length; i++) {
       (function(){ convertToNum( nonStringTypes[i] ); }).should.throw(TypeError, "Input type must be 'string'");
     }
   });
 
-  it('should throw an error if input string contains anything other than numbers and commas', function(){
-    (function(){ convertToNum('abcd'); }).should.throw(Error, 'Input string must only contain numbers and commas');
-    (function(){ convertToNum('1,234abcd'); }).should.throw(Error, 'Input string must only contain numbers and commas');
+  it('should throw an error if input string doesn\'t contain numbers', function(){
+    (function(){ convertToNum('abcd'); }).should.throw(Error, 'Input string must contain numbers');
   });
 
 });
