@@ -70,20 +70,10 @@ Asynchronously scrapes nutrient data from a user's food diary on a given date.
     -	'carbs'
     - 'fat'
     - 'protein'
-    - 'saturated fat'
-    - 'polyunsaturated fat'
-    - 'monounsaturated fat'
-    - 'trans fat'
     - 'cholesterol'
     - 'sodium'
-    - 'potassium'
-    - 'carbohydrates'
     - 'fiber'
     - 'sugar'
-    - 'vitamin a'
-    - 'vitamin c'
-    - 'calcium'
-    - 'iron'
 - callback `Function`
   - the callback is passed a single argument `data`, which will be an `Object`
   with the following format:
@@ -250,8 +240,10 @@ gulp watch
     - 'iron'
   - Fixed occasionally failing apiStatusCheck spec
   * 0.5.1 Fix Critical Bug: failing CircleCI build due to file naming issue
+  * 0.5.2 Update documentation
 
 # Known Issues
+
 
 # Backlog
 * add `exportCSV` function
