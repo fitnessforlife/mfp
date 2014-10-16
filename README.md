@@ -249,6 +249,7 @@ gulp watch
     - 'calcium'
     - 'iron'
   - Fixed occasionally failing apiStatusCheck spec
+  * 0.5.1 Fix Critical Bug: failing CircleCI build due to file naming issue
 
 # Known Issues
 
