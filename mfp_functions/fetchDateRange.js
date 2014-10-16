@@ -1,55 +1,88 @@
 'use strict';
-/*jshint -W083 */
-//ignore warning to not put functions in loops
 
-var fetchSingleDate = require('./fetchSingleDate');
+var request = require('request');
+var cheerio = require('cheerio');
+var helpers = require('./helper-utils');
 
-var fetchDateRange = function(username, dateStart, dateEnd, fields, callback) {
-  var results = {
-    username: username,
-    data: []
-  };
+var fetchDateRange = function(username, startDate, endDate, fields, callback){
+  //get MyFitnessPal URL (eg. 'http://www.myfitnesspal.com/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-17')
+  var url = helpers.mfpUrl(username, startDate, endDate);
 
-  var startDate = new Date(dateStart.slice(0,4), dateStart.slice(5,7) - 1, dateStart.slice(8,10));
-  var endDate = new Date(dateEnd.slice(0,4), dateEnd.slice(5,7) - 1, dateEnd.slice(8,10));
+  request(url, function(error, response, body) {
+    if (error) throw error;
 
-  var newDate = startDate;
-  var dateStrings = [];
-  var str;
+    var $ = cheerio.load(body); //load DOM from HTML file
 
-  while (newDate <= endDate){
-    str = newDate.getFullYear() + '-';
+    var dates = [];
+    var $tables = [];
 
-    //add month to str
-    if ( (newDate.getMonth() + 1) < 10) {
-      str += '0' + (newDate.getMonth() + 1);
-    } else {
-      str += (newDate.getMonth() + 1);
-    }
-
-    str += '-';
-
-    //add day to str
-    if (newDate.getDate() < 10) {
-      str += '0' + newDate.getDate();
-    } else {
-      str += newDate.getDate();
-    }
-
-    dateStrings.push(str);
-    newDate.setDate(newDate.getDate()+1);
-  }
-
-  var remainder = dateStrings.length;
-
-  dateStrings.forEach(function(date, index){
-    fetchSingleDate(username, date, fields, function(data){
-      results.data[index] = data;
-      remainder--;
-      if(!remainder){
-        callback(results);
-      }
+    //for each date encountered, add the date formatted as YYYY-MM-DD and data table
+    //to their respective arrays
+    $('.main-title-2').each(function(index, element){
+      var $element = $(element);
+      dates.push( helpers.formatDate(new Date($element.text())) );
+      $tables.push($element.next('table'));
     });
+
+    //create a results object
+    var results = {
+      username: username,
+      data: []
+    };
+
+    //subroutine that returns the data for a single date
+    var processDate = function(date, $table) {
+      //set results object to store data
+      var results = {};
+
+      //define variable for determining columns of fields on MFP page
+      var cols = {};
+
+      //find and set column numbers of nutrient fields
+      $table.find('thead').find('tr').find('td').each(function(index, element){
+        var $element = $(element);
+        var fieldName = $element.text().toLowerCase();
+        if (fieldName === "sugars") { fieldName = "sugar"; } // fixes MFP nutrient field name inconsistency
+        if (fieldName === "cholest") { fieldName = "cholesterol"; } // fixes MFP nutrient field name inconsistency
+        if (index !== 0) { cols[fieldName] = index; } //ignore first field, which just says "Foods"
+      });
+
+      //find row in MFP with nutrient totals
+      var $dataRow = $table.find('tfoot').find('tr');
+
+      //store data for each field in results
+      for (var field in cols) {
+        var col = cols[field] + 1; //because nth-child selector is 1-indexed, not 0-indexed
+        var mfpData = $dataRow.find('td:nth-child(' + col + ')').text();
+        results[field] = helpers.convertToNum(mfpData);
+      }
+
+      if (fields !== 'all' && Array.isArray(fields)) {
+        //create targetFields object to hash user-specified nutrient fields
+        var targetFields = {};
+        fields.forEach(function(field){
+          targetFields[field] = true;
+        });
+
+        for (var nutrient in results) {
+          if (targetFields[nutrient] === undefined) {
+            delete results[nutrient];
+          }
+        }
+      }
+
+      //add date to results object
+      results.date = date;
+
+      return results;
+    };
+
+    //iterate through all dates and push data into a final results object
+    for (var i = 0; i < dates.length; i++) {
+      results.data.push( processDate(dates[i], $tables[i]) );
+    }
+
+    callback( results );
   });
 };
 

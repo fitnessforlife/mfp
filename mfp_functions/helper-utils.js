@@ -23,10 +23,33 @@ var mfpUrl = function(userId, startDate, endDate){
   } else {
     return 'http://www.myfitnesspal.com/reports/printable_diary/' + userId;
   }
+};
 
+var formatDate = function(dateObject) {
+    if (dateObject.constructor !== Date) throw new Error("argument must be a valid JavaScript Date object");
+    var str = dateObject.getFullYear() + '-';
+
+    //add month to str
+    if ( (dateObject.getMonth() + 1) < 10) {
+      str += '0' + (dateObject.getMonth() + 1);
+    } else {
+      str += (dateObject.getMonth() + 1);
+    }
+
+    str += '-';
+
+    //add day to str
+    if (dateObject.getDate() < 10) {
+      str += '0' + dateObject.getDate();
+    } else {
+      str += dateObject.getDate();
+    }
+
+    return str;
 };
 
 module.exports = {
   convertToNum: convertToNum,
-  mfpUrl: mfpUrl
+  mfpUrl: mfpUrl,
+  formatDate: formatDate
 };

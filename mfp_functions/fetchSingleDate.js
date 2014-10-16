@@ -5,7 +5,7 @@ var cheerio = require('cheerio');
 var helpers = require('./helper-utils');
 
 var fetchSingleDate = function(username, date, fields, callback){
-  //get MyFitnessPal URL (eg. 'http://www.myfitnesspal.com/reports/printable_diary/azey47?from=2014-09-13&to=2014-07-13')
+  //get MyFitnessPal URL (eg. 'http://www.myfitnesspal.com/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13')
   var url = helpers.mfpUrl(username, date, date);
 
   request(url, function(error, response, body) {

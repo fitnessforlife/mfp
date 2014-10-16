@@ -233,7 +233,8 @@ gulp watch
 * 0.4.1 Fix Critical Bug: add fetchDateRange function and apiStatusCheck to index.js
 * 0.4.2 Fix Critical Bug: add chai as local dependency
 * 0.5.0 Multiple Enhancements and Fixes:
-  - Refactored fetchSingleDate for 260% performance improvement
+  - Refactored fetchSingleDate - 1.6x faster
+  - Refactored fetchDateRange - 3.88x faster for 5 days, 6.9x faster for 20 days
   - Remove unsupported nutrient fields from fetchSingleDate and fetchDateRange:
     - 'saturated fat'
     - 'polyunsaturated fat'
