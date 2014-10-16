@@ -235,7 +235,7 @@ gulp watch
 * 0.5.0 Multiple Enhancements and Fixes:
   - Refactored fetchSingleDate - 1.6x faster
   - Refactored fetchDateRange - 3.88x faster for 5 days, 6.9x faster for 20 days
-  - Remove unsupported nutrient fields from fetchSingleDate and fetchDateRange:
+  - Removed unsupported nutrient fields from fetchSingleDate and fetchDateRange:
     - 'saturated fat'
     - 'polyunsaturated fat'
     - 'monounsaturated fat'
@@ -246,12 +246,9 @@ gulp watch
     - 'vitamin c'
     - 'calcium'
     - 'iron'
+  - Fixed occasionally failing apiStatusCheck spec
 
 # Known Issues
-* apiStatusCheck test occasionally fails on "should pass an array with an error
-message when fetching user-specified nutrient data from a date doesn't work" test.
-Likely a callback timing error. Running `gulp test` once or twice afterwards makes
-the test pass.
 
 # Backlog
 * add `exportJSON` function

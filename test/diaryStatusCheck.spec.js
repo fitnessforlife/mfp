@@ -13,8 +13,8 @@ describe('diaryStatusCheck', function(){
 
   it('should pass a "public" string to a callback when accessing a public diary', function(){
     nock("http://www.myfitnesspal.com")
-      .get("/food/diary/npmmfp")
-      .replyWithFile(200, __dirname + '/mocks/diary-public.html');
+      .get("/reports/printable_diary/npmmfp")
+      .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html');
 
     diaryStatusCheck('npmmfp', function(status){
      (status).should.equal('public');
@@ -23,7 +23,7 @@ describe('diaryStatusCheck', function(){
 
   it('should pass a "private" string to a callback when accessing a private diary', function(){
     nock("http://www.myfitnesspal.com")
-      .get("/food/diary/npmmfp")
+      .get("/reports/printable_diary/npmmfp")
       .replyWithFile(200, __dirname + '/mocks/diary-private.html');
 
     diaryStatusCheck('npmmfp', function(status){
@@ -33,7 +33,7 @@ describe('diaryStatusCheck', function(){
 
   it('should pass a "private" string to a callback when accessing a password-protected diary', function(){
     nock("http://www.myfitnesspal.com")
-      .get("/food/diary/npmmfp")
+      .get("/reports/printable_diary/npmmfp")
       .replyWithFile(200, __dirname + '/mocks/diary-password.html');
 
     diaryStatusCheck('npmmfp', function(status){
@@ -43,7 +43,7 @@ describe('diaryStatusCheck', function(){
 
   it('should pass an "invalid user" string to a callback when accessing a diary that doesn\'t exist', function(){
     nock("http://www.myfitnesspal.com")
-      .get("/food/diary/asldfjkb3498a")
+      .get("/reports/printable_diary/asldfjkb3498a")
       .replyWithFile(200, __dirname + '/mocks/diary-invalid.html');
 
     diaryStatusCheck('asldfjkb3498a', function(status){

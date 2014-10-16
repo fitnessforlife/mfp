@@ -5,7 +5,7 @@ var cheerio = require('cheerio');
 var helpers = require('./helper-utils');
 
 var diaryStatusCheck = function(username, callback){
-  //get MyFitnessPal URL (eg. 'http://www.myfitnesspal.com/food/diary/azey47)
+  //get MyFitnessPal URL (eg. 'http://www.myfitnesspal.com/reports/printable_diary/npmmfp')
   var url = helpers.mfpUrl(username);
 
   request(url, function(error, response, body) {
@@ -17,7 +17,7 @@ var diaryStatusCheck = function(username, callback){
       callback('invalid user');
     }
 
-    else if ( $('#main').find('#settings').find('h1').text() === 'This Food Diary is Private' ) {
+    else if ( $('#main').find('#settings').find('h1').text() === 'This Diary is Private' ) {
       callback('private');
     }
 
