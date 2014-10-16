@@ -21,21 +21,21 @@ describe('apiStatusCheck', function(){
     });
   });
 
-  it("should pass an array with an error message when npmmfpprivate's diary is not 'private'", function(){
-    nock("http://www.myfitnesspal.com")
-      .get("/reports/printable_diary/npmmfp")
-      .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html')
-      .get("/reports/printable_diary/npmmfpprivate")
-      .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html')
-      .get("/reports/printable_diary/asdfkjb3Abfdalk")
-      .replyWithFile(200, __dirname + '/mocks/diary-invalid.html')
-      .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
-      .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html');
-
-    apiStatusCheck(function(errors){
-      (errors[0]).should.equal("diaryStatusCheck isn't working correctly for private profiles");
-    });
-  });
+  // it("should pass an array with an error message when npmmfpprivate's diary is not 'private'", function(){
+  //   nock("http://www.myfitnesspal.com")
+  //     .get("/reports/printable_diary/npmmfp")
+  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html')
+  //     .get("/reports/printable_diary/npmmfpprivate")
+  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html')
+  //     .get("/reports/printable_diary/asdfkjb3Abfdalk")
+  //     .replyWithFile(200, __dirname + '/mocks/diary-invalid.html')
+  //     .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
+  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html');
+  //
+  //   apiStatusCheck(function(errors){
+  //     (errors[0]).should.equal("diaryStatusCheck isn't working correctly for private profiles");
+  //   });
+  // });
 
   // it("should pass an array with an error message when invalid diaries are handled differently", function(){
   //   nock("http://www.myfitnesspal.com")
