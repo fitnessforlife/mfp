@@ -24,13 +24,13 @@ describe('apiStatusCheck', function(){
   // it("should pass an array with an error message when npmmfpprivate's diary is not 'private'", function(){
   //   nock("http://www.myfitnesspal.com")
   //     .get("/reports/printable_diary/npmmfp")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html')
+  //     .replyWithFile(200, __dirname + '/mocks/diary-public.html')
   //     .get("/reports/printable_diary/npmmfpprivate")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html')
+  //     .replyWithFile(200, __dirname + '/mocks/diary-public.html')
   //     .get("/reports/printable_diary/asdfkjb3Abfdalk")
   //     .replyWithFile(200, __dirname + '/mocks/diary-invalid.html')
   //     .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html');
+  //     .replyWithFile(200, __dirname + '/mocks/diary-public.html');
   //
   //   apiStatusCheck(function(errors){
   //     (errors[0]).should.equal("diaryStatusCheck isn't working correctly for private profiles");
@@ -40,13 +40,13 @@ describe('apiStatusCheck', function(){
   // it("should pass an array with an error message when invalid diaries are handled differently", function(){
   //   nock("http://www.myfitnesspal.com")
   //     .get("/reports/printable_diary/npmmfp")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html')
+  //     .replyWithFile(200, __dirname + '/mocks/diary-public.html')
   //     .get("/reports/printable_diary/npmmfpprivate")
   //     .replyWithFile(200, __dirname + '/mocks/diary-private.html')
   //     .get("/reports/printable_diary/asdfkjb3Abfdalk")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html')
+  //     .replyWithFile(200, __dirname + '/mocks/diary-public.html')
   //     .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html');
+  //     .replyWithFile(200, __dirname + '/mocks/diary-public.html');
   //
   //   apiStatusCheck(function(errors){
   //     (errors[0]).should.equal("diaryStatusCheck isn't working correctly for invalid usernames");
@@ -56,7 +56,7 @@ describe('apiStatusCheck', function(){
   // it("should pass an array with an error message when fetching all nutrient data from a date doesn't work", function(){
   //   nock("http://www.myfitnesspal.com")
   //     .get("/reports/printable_diary/npmmfp")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html')
+  //     .replyWithFile(200, __dirname + '/mocks/diary-public.html')
   //     .get("/reports/printable_diary/npmmfpprivate")
   //     .replyWithFile(200, __dirname + '/mocks/diary-private.html')
   //     .get("/reports/printable_diary/asdfkjb3Abfdalk")
@@ -64,7 +64,7 @@ describe('apiStatusCheck', function(){
   //     .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
   //     .replyWithFile(200, __dirname + '/mocks/diary-public-wrong-data.html')
   //     .get("/reports/printable_diary/npmmfp?from=2014-09-14&to=2014-09-14")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html');
+  //     .replyWithFile(200, __dirname + '/mocks/diary-public.html');
   //
   //   apiStatusCheck(function(errors){
   //     (errors[0]).should.equal("fetchSingleDate with all nutrients isn't working correctly");
@@ -74,13 +74,13 @@ describe('apiStatusCheck', function(){
   // it("should pass an array with an error message when fetching user-specified nutrient data from a date doesn't work", function(){
   //   nock("http://www.myfitnesspal.com")
   //     .get("/reports/printable_diary/npmmfp")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html')
+  //     .replyWithFile(200, __dirname + '/mocks/diary-public.html')
   //     .get("/reports/printable_diary/npmmfpprivate")
   //     .replyWithFile(200, __dirname + '/mocks/diary-private.html')
   //     .get("/reports/printable_diary/asdfkjb3Abfdalk")
   //     .replyWithFile(200, __dirname + '/mocks/diary-invalid.html')
   //     .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html')
+  //     .replyWithFile(200, __dirname + '/mocks/diary-public.html')
   //     .get("/reports/printable_diary/npmmfp?from=2014-09-14&to=2014-09-14")
   //     .replyWithFile(200, __dirname + '/mocks/diary-public-wrong-data.html');
   //
@@ -98,7 +98,7 @@ describe('apiStatusCheck', function(){
   //     .get("/reports/printable_diary/asdfkjb3Abfdalk")
   //     .replyWithFile(200, __dirname + '/mocks/diary-invalid.html')
   //     .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
-  //     .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html')
+  //     .replyWithFile(200, __dirname + '/mocks/diary-public.html')
   //     .get("/reports/printable_diary/npmmfp?from=2014-09-14&to=2014-09-14")
   //     .replyWithFile(200, __dirname + '/mocks/diary-public-wrong-data.html');
   //

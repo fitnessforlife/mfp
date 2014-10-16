@@ -14,7 +14,7 @@ describe('diaryStatusCheck', function(){
   it('should pass a "public" string to a callback when accessing a public diary', function(){
     nock("http://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp")
-      .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html');
+      .replyWithFile(200, __dirname + '/mocks/diary-public.html');
 
     diaryStatusCheck('npmmfp', function(status){
      (status).should.equal('public');
