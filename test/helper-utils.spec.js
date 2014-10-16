@@ -5,6 +5,7 @@ var should = require('chai').should();
 
 var convertToNum = require('../mfp_functions/helper-utils.js').convertToNum;
 var mfpUrl = require('../mfp_functions/helper-utils.js').mfpUrl;
+var formatDate = require('../mfp_functions/helper-utils.js').formatDate;
 
 var nonStringTypes = [true, [], {}, null, 1234];
 
@@ -60,7 +61,8 @@ describe('mfpUrl', function(){
 
   it('should throw an error for non-string date inputs', function(){
     for (var i = 0; i < nonStringTypes.length; i++) {
-      (function(){ mfpUrl( 'username', nonStringTypes[i], nonStringTypes[i] ); }).should.throw(TypeError, "Date must be 'string'");
+      (function(){ mfpUrl( 'username', '2014-07-04', nonStringTypes[i] ); }).should.throw(TypeError, "Date must be 'string'");
+      (function(){ mfpUrl( 'username', nonStringTypes[i], '2014-07-04' ); }).should.throw(TypeError, "Date must be 'string'");
     }
   });
 
@@ -68,4 +70,20 @@ describe('mfpUrl', function(){
     (function(){ mfpUrl('username', '2014-99-75', '2014-01-15'); }).should.throw(Error, "Date must be formatted as valid 'YYYY-MM-DD'");
     (function(){ mfpUrl('username', '2014-07-04', '2014-07-04-abcd'); }).should.throw(Error, "Date must be formatted as valid 'YYYY-MM-DD'");
   });
+});
+
+describe('formatDate', function(){
+  it('should be a function', function(){
+    (typeof formatDate).should.equal('function');
+  });
+
+  it('should throw an error if passed anything other than a date object', function(){
+    (function(){ formatDate( [1,2,3] ); }).should.throw(Error, "argument must be a valid JavaScript Date object");
+  });
+
+  it('should format dates correctly', function(){
+    (formatDate(new Date("August 1, 2015"))).should.equal('2015-08-01');
+    (formatDate(new Date("December 15, 1999"))).should.equal('1999-12-15');
+  });
+
 });
