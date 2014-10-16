@@ -14,7 +14,7 @@ describe('fetchSingleDate', function(){
   it('should contain the correct diary date in the results object', function(){
     nock("http://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
-      .replyWithFile(200, __dirname + '/mocks/diary-SingleDate.html');
+      .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html');
 
     var expected = {
       date: '2014-09-13',
@@ -36,7 +36,7 @@ describe('fetchSingleDate', function(){
   it('should return an object with all available nutrient data', function(){
     nock("http://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
-      .replyWithFile(200, __dirname + '/mocks/diary-SingleDate.html');
+      .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html');
 
     var expected = {
       date: '2014-09-13',
@@ -58,7 +58,7 @@ describe('fetchSingleDate', function(){
   it('should return an object with only user specified nutrient data', function(){
     nock("http://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
-      .replyWithFile(200, __dirname + '/mocks/diary-SingleDate.html');
+      .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html');
 
     var expected = {
       date: '2014-09-13',
@@ -76,7 +76,7 @@ describe('fetchSingleDate', function(){
   it('should ignore invalid nutrient fields', function(){
     nock("http://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
-      .replyWithFile(200, __dirname + '/mocks/diary-SingleDate.html');
+      .replyWithFile(200, __dirname + '/mocks/diary-singleDate.html');
 
     var expected = {
       date: '2014-09-13',
