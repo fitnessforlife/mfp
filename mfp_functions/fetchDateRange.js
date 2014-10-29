@@ -21,7 +21,7 @@ var fetchDateRange = function(username, startDate, endDate, fields, callback){
     $('.main-title-2').each(function(index, element){
       var $element = $(element);
       dates.push( helpers.formatDate(new Date($element.text())) );
-      $tables.push($element.next('table'));
+      $tables.push($element.next('#food'));
     });
 
     //create a results object
