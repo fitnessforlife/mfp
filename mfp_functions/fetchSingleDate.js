@@ -20,7 +20,7 @@ var fetchSingleDate = function(username, date, fields, callback){
     var cols = {};
 
     //find and set column numbers of nutrient fields
-    $('thead').find('tr').find('td').each(function(index, element){
+    $('#food').find('thead').find('tr').find('td').each(function(index, element){
       var $element = $(element);
       var fieldName = $element.text().toLowerCase();
       if (fieldName === "sugars") { fieldName = "sugar"; } // fixes MFP nutrient field name inconsistency
