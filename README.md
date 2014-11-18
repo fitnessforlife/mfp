@@ -241,6 +241,7 @@ gulp watch
   - Fixed occasionally failing apiStatusCheck spec
 * 0.5.1 Fix Critical Bug: failing CircleCI build due to file naming issue
 * 0.5.2 Update documentation
+* 0.5.3 Fix Bug: diaryStatusCheck correctly returns 'invalid user' when hitting 404 page
 
 # Known Issues
 
