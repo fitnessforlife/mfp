@@ -50,4 +50,14 @@ describe('diaryStatusCheck', function(){
       (status).should.equal('invalid user');
     });
   });
+
+  it('should pass an "invalid user" string to a callback when accessing a page that doesn\'t exist', function(){
+    nock("http://www.myfitnesspal.com")
+      .get("/reports/printable_diary/http://www.myfitnesspal.com")
+      .replyWithFile(200, __dirname + '/mocks/diary-404-page.html');
+
+    diaryStatusCheck('http://www.myfitnesspal.com', function(status){
+      (status).should.equal('invalid user');
+    });
+  });
 });

@@ -17,6 +17,10 @@ var diaryStatusCheck = function(username, callback){
       callback('invalid user');
     }
 
+    else if ( $('h1').text() === 'Page not found') {
+      callback('invalid user');
+    }
+
     else if ( $('#main').find('#settings').find('h1').text() === 'This Diary is Private' ) {
       callback('private');
     }
