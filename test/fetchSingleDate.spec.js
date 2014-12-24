@@ -11,7 +11,7 @@ describe('fetchSingleDate', function(){
     (typeof fetchSingleDate).should.equal('function');
   });
 
-  it('should contain the correct diary date in the results object', function(){
+  it('should contain the correct diary date in the results object', function(done){
     nock("http://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
       .replyWithFile(200, __dirname + '/mocks/diary-public.html');
@@ -30,10 +30,11 @@ describe('fetchSingleDate', function(){
 
     fetchSingleDate('npmmfp', '2014-09-13', 'all', function(data){
      (data.date).should.equal(expected.date);
+     done();
     });
   });
 
-  it('should return an object with all available nutrient data', function(){
+  it('should return an object with all available nutrient data', function(done){
     nock("http://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
       .replyWithFile(200, __dirname + '/mocks/diary-public.html');
@@ -52,10 +53,11 @@ describe('fetchSingleDate', function(){
 
     fetchSingleDate('npmmfp', '2014-09-13', 'all', function(data){
      (data).should.deep.equal(expected);
+     done();
     });
   });
 
-  it('should return an object with only user specified nutrient data', function(){
+  it('should return an object with only user specified nutrient data', function(done){
     nock("http://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
       .replyWithFile(200, __dirname + '/mocks/diary-public.html');
@@ -70,10 +72,11 @@ describe('fetchSingleDate', function(){
 
     fetchSingleDate('npmmfp', '2014-09-13', ['calories', 'fat', 'cholesterol', 'sugar'], function(data){
      (data).should.deep.equal(expected);
+     done();
     });
   });
 
-  it('should ignore invalid nutrient fields', function(){
+  it('should ignore invalid nutrient fields', function(done){
     nock("http://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
       .replyWithFile(200, __dirname + '/mocks/diary-public.html');
@@ -88,6 +91,7 @@ describe('fetchSingleDate', function(){
 
     fetchSingleDate('npmmfp', '2014-09-13', ['calories', 'fat', 'cholesterol', 'sugar', 'wrongnutrientfield'], function(data){
      (data).should.deep.equal(expected);
+     done();
     });
   });
 });
