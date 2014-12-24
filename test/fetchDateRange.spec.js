@@ -11,7 +11,7 @@ describe('fetchDateRange', function(){
     (typeof fetchDateRange).should.equal('function');
   });
 
-  it('should return an object with all available nutrient data', function(){
+  it('should return an object with all available nutrient data', function(done){
     nock("http://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-17")
       .replyWithFile(200, __dirname + '/mocks/diary-5Days.html');
@@ -74,10 +74,11 @@ describe('fetchDateRange', function(){
 
     fetchDateRange('npmmfp', '2014-09-13', '2014-09-17', 'all', function(data){
       (data).should.deep.equal(expected);
+      done();
     });
   });
 
-  it('should return an object with only user specified nutrient data', function(){
+  it('should return an object with only user specified nutrient data', function(done){
     nock("http://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-17")
       .replyWithFile(200, __dirname + '/mocks/diary-5Days.html');
@@ -110,6 +111,7 @@ describe('fetchDateRange', function(){
 
     fetchDateRange('npmmfp', '2014-09-13', '2014-09-17', ['calories', 'carbs'], function(data){
      (data).should.deep.equal(expected);
+     done();
     });
   });
 });
