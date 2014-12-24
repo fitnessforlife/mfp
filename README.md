@@ -242,6 +242,7 @@ gulp watch
 * 0.5.1 Fix Critical Bug: failing CircleCI build due to file naming issue
 * 0.5.2 Update documentation
 * 0.5.3 Fix Bug: diaryStatusCheck correctly returns 'invalid user' when hitting 404 page
+* 0.5.4 Update dependencies, update tests to use mocha's done() for async tests
 
 # Known Issues
 
