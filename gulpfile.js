@@ -21,6 +21,7 @@ gulp.task('test', function(cb){
     './index.js'
   ])
   .pipe( istanbul() )
+  .pipe(istanbul.hookRequire()) // Force `require` to return covered files
   .on( 'finish', function(){
     gulp.src([
       './test/**/*.js'
