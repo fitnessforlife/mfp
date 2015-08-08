@@ -8,7 +8,14 @@ var fetchDateRange = function(username, startDate, endDate, fields, callback){
   //get MyFitnessPal URL (eg. 'http://www.myfitnesspal.com/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-17')
   var url = helpers.mfpUrl(username, startDate, endDate);
 
-  request(url, function(error, response, body) {
+  var options = {
+    url: url,
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
+    }
+  };
+
+  request(options, function(error, response, body) {
     if (error) throw error;
 
     var $ = cheerio.load(body); //load DOM from HTML file
