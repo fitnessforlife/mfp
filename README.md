@@ -244,6 +244,7 @@ gulp watch
 * 0.5.3 Fix Bug: diaryStatusCheck correctly returns 'invalid user' when hitting 404 page
 * 0.5.4 Update dependencies, update tests to use mocha's done() for async tests
 * 0.5.5 Add User Agent String to Request Headers to Fix Failing Scraping
+* 0.5.6 Add User-Agent String to Request Headers of checking if diary is public
 
 # Known Issues
 
