@@ -4,7 +4,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var helpers = require('./helper-utils');
 
-var fetchSingleDate = function(username, date, fields, callback){
+var fetchSingleDate = function (username, date, fields, callback) {
   //get MyFitnessPal URL (eg. 'http://www.myfitnesspal.com/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13')
   var url = helpers.mfpUrl(username, date, date);
 
@@ -15,7 +15,7 @@ var fetchSingleDate = function(username, date, fields, callback){
     }
   };
 
-  request(options, function(error, response, body) {
+  request(options, function (error, response, body) {
     if (error) throw error;
 
     var $ = cheerio.load(body);
@@ -27,13 +27,44 @@ var fetchSingleDate = function(username, date, fields, callback){
     var cols = {};
 
     //find and set column numbers of nutrient fields
-    $('#food').find('thead').find('tr').find('td').each(function(index, element){
+    $('#food').find('thead').find('tr').find('td').each(function (index, element) {
       var $element = $(element);
       var fieldName = $element.text().toLowerCase();
-      if (fieldName === "sugars") { fieldName = "sugar"; } // fixes MFP nutrient field name inconsistency
-      if (fieldName === "cholest") { fieldName = "cholesterol"; } // fixes MFP nutrient field name inconsistency
-      if (index !== 0) { cols[fieldName] = index; } //ignore first field, which just says "Foods"
+      if (fieldName === "sugars") {
+        fieldName = "sugar";
+      } // fixes MFP nutrient field name inconsistency
+      if (fieldName === "cholest") {
+        fieldName = "cholesterol";
+      } // fixes MFP nutrient field name inconsistency
+      if (index !== 0) {
+        cols[fieldName] = index;
+      } //ignore first field, which just says "Foods"
     });
+
+    var lastMeal;
+    var meals = {
+      'breakfast': [],
+      'lunch': [],
+      'dinner': [],
+      'snacks': []
+    };
+
+    $('.first').each((index, element) => {
+      // first is always meals
+      if (index > 0) {
+        let meal = $(element).text().toLowerCase();
+        // last is always total:
+        if (meal.indexOf('total:') < 0) {
+          if (!meals[meal] && meals[lastMeal]) {
+            meals[lastMeal].push(meal);
+          } else {
+            lastMeal = meal;
+          }
+        }
+      }
+    });
+
+    results.meals = meals;
 
     //find row in MFP with nutrient totals
     var $dataRow = $('tfoot').find('tr');
@@ -48,7 +79,7 @@ var fetchSingleDate = function(username, date, fields, callback){
     if (fields !== 'all' && Array.isArray(fields)) {
       //create targetFields object to hash user-specified nutrient fields
       var targetFields = {};
-      fields.forEach(function(field){
+      fields.forEach(function (field) {
         targetFields[field] = true;
       });
 
