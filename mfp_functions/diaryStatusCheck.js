@@ -4,7 +4,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var helpers = require('./helper-utils');
 
-var diaryStatusCheck = function(username, callback){
+var diaryStatusCheck = function (username, callback) {
   //get MyFitnessPal URL (eg. 'http://www.myfitnesspal.com/reports/printable_diary/npmmfp')
   var url = helpers.mfpUrl(username);
 
@@ -15,28 +15,20 @@ var diaryStatusCheck = function(username, callback){
     }
   };
 
-  request(options, function(error, response, body) {
+  request(options, function (error, response, body) {
     if (error) throw error;
 
     var $ = cheerio.load(body);
 
     if (body === 'Invalid username' || body === 'Invalid username\n') {
       callback('invalid user');
-    }
-
-    else if ( $('h1').text() === 'Page not found') {
+    } else if ($('h1').text() === 'Page not found') {
       callback('invalid user');
-    }
-
-    else if ( $('#main').find('#settings').find('h1').text() === 'This Diary is Private' ) {
+    } else if ($('#main').find('#settings').find('h1').text() === 'This Diary is Private') {
       callback('private');
-    }
-
-    else if ( $('#main').find('#settings').find('h1').text() === 'Password Required' ) {
+    } else if ($('#main').find('#settings').find('h1').text() === 'Password Required') {
       callback('private');
-    }
-
-    else {
+    } else {
       callback('public');
     }
   });
