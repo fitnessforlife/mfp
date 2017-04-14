@@ -49,7 +49,7 @@ var fetchSingleDate = function (username, date, fields, callback) {
       'snacks': []
     };
 
-    $('.first').each((index, element) => {
+    $('.first').each(function (index, element) {
       // first is always meals
       if (index > 0) {
         let meal = $(element).text().toLowerCase();
