@@ -52,7 +52,7 @@ var fetchSingleDate = function (username, date, fields, callback) {
     $('.first').each(function (index, element) {
       // first is always meals
       if (index > 0) {
-        let meal = $(element).text().toLowerCase();
+        var meal = $(element).text().toLowerCase();
         // last is always total:
         if (meal.indexOf('total:') < 0) {
           if (!meals[meal] && meals[lastMeal]) {
