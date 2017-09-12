@@ -24,7 +24,7 @@ var diaryStatusCheck = function(username, callback){
       callback('invalid user');
     }
 
-    else if ( $('h1').text() === 'Page not found') {
+    else if ( $('h1').text() === 'This Username is Invalid') {
       callback('invalid user');
     }
 
