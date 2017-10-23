@@ -1,6 +1,6 @@
 {
   "name": "mfp",
-  "version": "0.5.8",
+  "version": "0.6.0",
   "description": "A third-party API for accessing MyFitnessPal diary data",
   "main": "index.js",
   "scripts": {
