@@ -1,6 +1,6 @@
 machine:
   node:
-    version: v0.10.32
+    version: v6.11.2
 
 dependencies:
   override:
