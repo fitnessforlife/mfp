@@ -25,6 +25,18 @@ var mfpUrl = function(userId, startDate, endDate){
   }
 };
 
+var mfpWaterUrl = function(userId, date){
+  if (typeof userId !== "string") throw new TypeError("User ID must be 'string'");
+
+  if (date !== undefined) {
+    if (typeof date !== "string") throw new TypeError("Date must be 'string'");
+    if (date.match(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/) === null) throw new Error("Date must be formatted as valid 'YYYY-MM-DD'");
+    return 'http://www.myfitnesspal.com/food/diary/' + userId + '?date=' + date;
+  } else {
+    return 'www.myfitnesspal.com/food/diary/' + userId;
+  }
+};
+
 var formatDate = function(dateObject) {
     if (dateObject.constructor !== Date) throw new Error("argument must be a valid JavaScript Date object");
     var str = dateObject.getFullYear() + '-';
@@ -51,5 +63,6 @@ var formatDate = function(dateObject) {
 module.exports = {
   convertToNum: convertToNum,
   mfpUrl: mfpUrl,
+  mfpWaterUrl: mfpWaterUrl,
   formatDate: formatDate
 };

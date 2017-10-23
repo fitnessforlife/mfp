@@ -22,7 +22,9 @@ describe('apiStatusCheck', function(){
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
       .replyWithFile(200, __dirname + '/mocks/diary-public.html')
       .get("/reports/printable_diary/npmmfp?from=2014-09-14&to=2014-09-14")
-      .replyWithFile(200, __dirname + '/mocks/diary-public-wrong-data.html');
+      .replyWithFile(200, __dirname + '/mocks/diary-public-wrong-data.html')
+      .get("/food/diary/npmmfp?date=2014-09-13")
+      .replyWithFile(200, __dirname + '/mocks/diary2-public.html');
 
     apiStatusCheck(function(errors){
       (errors[0]).should.equal("diaryStatusCheck isn't working correctly for public profiles");
@@ -41,7 +43,9 @@ describe('apiStatusCheck', function(){
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
       .replyWithFile(200, __dirname + '/mocks/diary-public.html')
       .get("/reports/printable_diary/npmmfp?from=2014-09-14&to=2014-09-14")
-      .replyWithFile(200, __dirname + '/mocks/diary-public-wrong-data.html');
+      .replyWithFile(200, __dirname + '/mocks/diary-public-wrong-data.html')
+      .get("/food/diary/npmmfp?date=2014-09-13")
+      .replyWithFile(200, __dirname + '/mocks/diary2-public.html');
 
     apiStatusCheck(function(errors){
       (errors[0]).should.equal("diaryStatusCheck isn't working correctly for private profiles");
@@ -60,7 +64,9 @@ describe('apiStatusCheck', function(){
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
       .replyWithFile(200, __dirname + '/mocks/diary-public.html')
       .get("/reports/printable_diary/npmmfp?from=2014-09-14&to=2014-09-14")
-      .replyWithFile(200, __dirname + '/mocks/diary-public-wrong-data.html');
+      .replyWithFile(200, __dirname + '/mocks/diary-public-wrong-data.html')
+      .get("/food/diary/npmmfp?date=2014-09-13")
+      .replyWithFile(200, __dirname + '/mocks/diary2-public.html');
 
     apiStatusCheck(function(errors){
       (errors[0]).should.equal("diaryStatusCheck isn't working correctly for invalid usernames");
@@ -79,7 +85,9 @@ describe('apiStatusCheck', function(){
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
       .replyWithFile(200, __dirname + '/mocks/diary-public-wrong-data.html') //wrong data
       .get("/reports/printable_diary/npmmfp?from=2014-09-14&to=2014-09-14")
-      .replyWithFile(200, __dirname + '/mocks/diary-public.html');
+      .replyWithFile(200, __dirname + '/mocks/diary-public.html')
+      .get("/food/diary/npmmfp?date=2014-09-13")
+      .replyWithFile(200, __dirname + '/mocks/diary2-public.html');
 
     apiStatusCheck(function(errors){
       (errors[0]).should.equal("fetchSingleDate with all nutrients isn't working correctly");
@@ -98,7 +106,9 @@ describe('apiStatusCheck', function(){
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
       .replyWithFile(200, __dirname + '/mocks/diary-public.html')
       .get("/reports/printable_diary/npmmfp?from=2014-09-14&to=2014-09-14")
-      .replyWithFile(200, __dirname + '/mocks/diary-public-wrong-data.html'); //wrong data
+      .replyWithFile(200, __dirname + '/mocks/diary-public-wrong-data.html') //wrong data
+      .get("/food/diary/npmmfp?date=2014-09-13")
+      .replyWithFile(200, __dirname + '/mocks/diary2-public.html');
 
     apiStatusCheck(function(errors){
       (errors).should.include("diaryStatusCheck isn't working correctly for public profiles");
