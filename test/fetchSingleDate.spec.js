@@ -14,7 +14,9 @@ describe('fetchSingleDate', function(){
   it('should contain the correct diary date in the results object', function(done){
     nock("http://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
-      .replyWithFile(200, __dirname + '/mocks/diary-public.html');
+      .replyWithFile(200, __dirname + '/mocks/diary-public.html')
+      .get("/food/diary/npmmfp?date=2014-09-13")
+      .replyWithFile(200, __dirname + '/mocks/diary2-public.html');
 
     var expected = {
       date: '2014-09-13',
@@ -25,7 +27,8 @@ describe('fetchSingleDate', function(){
       cholesterol: 1123,
       sodium: 3031,
       sugar: 14,
-      fiber: 5
+      fiber: 5,
+      water: 0
     };
 
     fetchSingleDate('npmmfp', '2014-09-13', 'all', function(data){
@@ -37,7 +40,9 @@ describe('fetchSingleDate', function(){
   it('should return an object with all available nutrient data', function(done){
     nock("http://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13")
-      .replyWithFile(200, __dirname + '/mocks/diary-public.html');
+      .replyWithFile(200, __dirname + '/mocks/diary-public.html')
+      .get("/food/diary/npmmfp?date=2014-09-13")
+      .replyWithFile(200, __dirname + '/mocks/diary2-public.html');
 
     var expected = {
       date: '2014-09-13',
@@ -48,7 +53,8 @@ describe('fetchSingleDate', function(){
       cholesterol: 1123,
       sodium: 3031,
       sugar: 14,
-      fiber: 5
+      fiber: 5,
+      water: 0
     };
 
     fetchSingleDate('npmmfp', '2014-09-13', 'all', function(data){
