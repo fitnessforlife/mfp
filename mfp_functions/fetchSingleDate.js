@@ -43,7 +43,7 @@ var fetchSingleDate = function(username, date, fields, callback){
     //store data for each field in results
     for (var field in cols) {
       var col = cols[field] + 1; //because nth-child selector is 1-indexed, not 0-indexed
-      var mfpData = $dataRow.find('td:nth-child(' + col + ')').text();
+      var mfpData = $dataRow.find('td:nth-child(' + col + ')').first().text();
       results[field] = helpers.convertToNum(mfpData);
     }
 
