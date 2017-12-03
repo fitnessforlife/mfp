@@ -73,6 +73,7 @@ Asynchronously scrapes nutrient data from a user's food diary on a given date.
     - 'sodium'
     - 'fiber'
     - 'sugar'
+    - 'water'
 - callback `Function`
   - the callback is passed a single argument `data`, which will be an `Object`
   with the following format:
@@ -185,10 +186,10 @@ mfp.apiStatusCheck(function(errors) {
 
 # Development Dependencies
 
-####Global
+#### Global
 - gulp (latest)
 
-####Local
+#### Local
 - mocha (latest)
 - coveralls (latest)
 - gulp (latest)
@@ -216,6 +217,8 @@ gulp watch
 
 # Release History
 
+#### [Currently Using Github Releases since 0.5.5](https://github.com/fitnessforlife/mfp/releases)
+
 * 0.1.0 Initial release, diaryStatusCheck()
 * 0.1.1 Update documentation, badges/shields
 * 0.2.0 Add fetchSingleDate function
@@ -242,8 +245,7 @@ gulp watch
 * 0.5.2 Update documentation
 * 0.5.3 Fix Bug: diaryStatusCheck correctly returns 'invalid user' when hitting 404 page
 * 0.5.4 Update dependencies, update tests to use mocha's done() for async tests
-* 0.5.5 Add User Agent String to Request Headers to Fix Failing Scraping
-* 0.5.6 Add User-Agent String to Request Headers of checking if diary is public
+* 0.5.5+ ([Using Github Releases](https://github.com/fitnessforlife/mfp/releases))
 
 # Known Issues
 
