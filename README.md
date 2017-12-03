@@ -5,9 +5,8 @@ A third-party API for accessing MyFitnessPal diary data.
 For it to work, you should set your diary privacy status to "public".
 
 [![NPM](http://img.shields.io/npm/v/mfp.svg)](https://www.npmjs.org/package/mfp)
-[![Circle CI](https://circleci.com/gh/andrewzey/mfp.svg?style=shield&circle-token=e1f56bff19b1519adb77480cbb13550a0d3028e8)](https://circleci.com/gh/andrewzey/mfp)
-[![Coverage Status](http://img.shields.io/coveralls/andrewzey/mfp.svg)](https://coveralls.io/r/andrewzey/mfp?branch=master)
-[![Dependency Checker](http://img.shields.io/david/andrewzey/mfp.svg)](https://david-dm.org/andrewzey/mfp)
+[![Circle CI](https://circleci.com/gh/fitnessforlife/mfp.svg?style=shield&circle-token=e1f56bff19b1519adb77480cbb13550a0d3028e8)](https://circleci.com/gh/fitnessforlife/mfp)
+[![Dependency Checker](http://img.shields.io/david/fitnessforlife/mfp.svg)](https://david-dm.org/fitnessforlife/mfp)
 
 # Installation
 
@@ -74,6 +73,7 @@ Asynchronously scrapes nutrient data from a user's food diary on a given date.
     - 'sodium'
     - 'fiber'
     - 'sugar'
+    - 'water'
 - callback `Function`
   - the callback is passed a single argument `data`, which will be an `Object`
   with the following format:
@@ -186,10 +186,10 @@ mfp.apiStatusCheck(function(errors) {
 
 # Development Dependencies
 
-####Global
+#### Global
 - gulp (latest)
 
-####Local
+#### Local
 - mocha (latest)
 - coveralls (latest)
 - gulp (latest)
@@ -217,6 +217,8 @@ gulp watch
 
 # Release History
 
+#### [Currently Using Github Releases since 0.5.5](https://github.com/fitnessforlife/mfp/releases)
+
 * 0.1.0 Initial release, diaryStatusCheck()
 * 0.1.1 Update documentation, badges/shields
 * 0.2.0 Add fetchSingleDate function
@@ -243,8 +245,7 @@ gulp watch
 * 0.5.2 Update documentation
 * 0.5.3 Fix Bug: diaryStatusCheck correctly returns 'invalid user' when hitting 404 page
 * 0.5.4 Update dependencies, update tests to use mocha's done() for async tests
-* 0.5.5 Add User Agent String to Request Headers to Fix Failing Scraping
-* 0.5.6 Add User-Agent String to Request Headers of checking if diary is public
+* 0.5.5+ ([Using Github Releases](https://github.com/fitnessforlife/mfp/releases))
 
 # Known Issues
 
