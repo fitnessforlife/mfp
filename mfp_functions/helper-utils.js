@@ -33,7 +33,7 @@ var mfpWaterUrl = function(userId, date){
     if (date.match(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/) === null) throw new Error("Date must be formatted as valid 'YYYY-MM-DD'");
     return 'https://www.myfitnesspal.com/food/diary/' + userId + '?date=' + date;
   } else {
-    return 'www.myfitnesspal.com/food/diary/' + userId;
+    return 'https://www.myfitnesspal.com/food/diary/' + userId;
   }
 };
 
