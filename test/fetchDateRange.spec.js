@@ -12,7 +12,7 @@ describe('fetchDateRange', function(){
   });
 
   it('should return an object with all available nutrient data', function(done){
-    nock("http://www.myfitnesspal.com")
+    nock("https://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-17")
       .replyWithFile(200, __dirname + '/mocks/diary-5Days.html');
 
@@ -79,7 +79,7 @@ describe('fetchDateRange', function(){
   });
 
   it('should return an object with only user specified nutrient data', function(done){
-    nock("http://www.myfitnesspal.com")
+    nock("https://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-17")
       .replyWithFile(200, __dirname + '/mocks/diary-5Days.html');
 

@@ -19,9 +19,9 @@ var mfpUrl = function(userId, startDate, endDate){
     if (typeof endDate !== "string") throw new TypeError("Date must be 'string'");
     if (startDate.match(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/) === null) throw new Error("Date must be formatted as valid 'YYYY-MM-DD'");
     if (endDate.match(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/) === null) throw new Error("Date must be formatted as valid 'YYYY-MM-DD'");
-    return 'http://www.myfitnesspal.com/reports/printable_diary/' + userId + '?from=' + startDate + '&to=' + endDate;
+    return 'https://www.myfitnesspal.com/reports/printable_diary/' + userId + '?from=' + startDate + '&to=' + endDate;
   } else {
-    return 'http://www.myfitnesspal.com/reports/printable_diary/' + userId;
+    return 'https://www.myfitnesspal.com/reports/printable_diary/' + userId;
   }
 };
 
@@ -31,9 +31,9 @@ var mfpWaterUrl = function(userId, date){
   if (date !== undefined) {
     if (typeof date !== "string") throw new TypeError("Date must be 'string'");
     if (date.match(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/) === null) throw new Error("Date must be formatted as valid 'YYYY-MM-DD'");
-    return 'http://www.myfitnesspal.com/food/diary/' + userId + '?date=' + date;
+    return 'https://www.myfitnesspal.com/food/diary/' + userId + '?date=' + date;
   } else {
-    return 'www.myfitnesspal.com/food/diary/' + userId;
+    return 'https://www.myfitnesspal.com/food/diary/' + userId;
   }
 };
 
