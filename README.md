@@ -2,7 +2,7 @@ mfp
 ==============
 A third-party API for accessing MyFitnessPal diary data.
 
-For it to work, you should set your diary privacy status to "public".
+For it to work, you should set your [diary privacy status to "public"](https://www.myfitnesspal.com/account/diary_settings).
 
 [![NPM](http://img.shields.io/npm/v/mfp.svg)](https://www.npmjs.org/package/mfp)
 [![Circle CI](https://circleci.com/gh/fitnessforlife/mfp.svg?style=shield&circle-token=e1f56bff19b1519adb77480cbb13550a0d3028e8)](https://circleci.com/gh/fitnessforlife/mfp)
