@@ -12,7 +12,7 @@ describe('apiStatusCheck', function(){
   });
 
   it("should pass an array with an error message when npmmfp's diary is not 'public'", function(done){
-    nock("http://www.myfitnesspal.com")
+    nock("https://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp")
       .replyWithFile(200, __dirname + '/mocks/diary-private.html') //wrong one
       .get("/reports/printable_diary/npmmfpprivate")
@@ -33,7 +33,7 @@ describe('apiStatusCheck', function(){
   });
 
   it("should pass an array with an error message when npmmfpprivate's diary is not 'private'", function(done){
-    nock("http://www.myfitnesspal.com")
+    nock("https://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp")
       .replyWithFile(200, __dirname + '/mocks/diary-public.html')
       .get("/reports/printable_diary/npmmfpprivate")
@@ -54,7 +54,7 @@ describe('apiStatusCheck', function(){
   });
 
   it("should pass an array with an error message when invalid diaries are handled incorrectly", function(done){
-    nock("http://www.myfitnesspal.com")
+    nock("https://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp")
       .replyWithFile(200, __dirname + '/mocks/diary-public.html')
       .get("/reports/printable_diary/npmmfpprivate")
@@ -75,7 +75,7 @@ describe('apiStatusCheck', function(){
   });
 
   it("should pass an array with an error message when fetching all nutrient data from a date doesn't work", function(done){
-    nock("http://www.myfitnesspal.com")
+    nock("https://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp")
       .replyWithFile(200, __dirname + '/mocks/diary-public.html')
       .get("/reports/printable_diary/npmmfpprivate")
@@ -96,7 +96,7 @@ describe('apiStatusCheck', function(){
   });
 
   it("should pass an array with multiple error messages when encountering multiple broken functions", function(done){
-    nock("http://www.myfitnesspal.com")
+    nock("https://www.myfitnesspal.com")
       .get("/reports/printable_diary/npmmfp")
       .replyWithFile(200, __dirname + '/mocks/diary-private.html')
       .get("/reports/printable_diary/npmmfpprivate")

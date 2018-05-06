@@ -7,7 +7,7 @@ var helpers = require('./helper-utils');
 
 //some notes: we use the printable diary for most checks, but not water, which can't be fetched here.
 var fetchSingleDate = function(username, date, fields, callback){
-  //get MyFitnessPal URL (eg. 'http://www.myfitnesspal.com/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13')
+  //get MyFitnessPal URL (eg. 'https://www.myfitnesspal.com/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-13')
   var url = helpers.mfpUrl(username, date, date);
 
   var options = {

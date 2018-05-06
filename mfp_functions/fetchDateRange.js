@@ -5,7 +5,7 @@ var cheerio = require('cheerio');
 var helpers = require('./helper-utils');
 
 var fetchDateRange = function(username, startDate, endDate, fields, callback){
-  //get MyFitnessPal URL (eg. 'http://www.myfitnesspal.com/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-17')
+  //get MyFitnessPal URL (eg. 'https://www.myfitnesspal.com/reports/printable_diary/npmmfp?from=2014-09-13&to=2014-09-17')
   var url = helpers.mfpUrl(username, startDate, endDate);
 
   var options = {
