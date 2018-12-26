@@ -35,11 +35,30 @@ Asynchronously scrapes nutrient data from a user's food diary on a given date.
     - 'sodium'
     - 'fiber'
     - 'sugar'
+    - 'entries' (individual food items)
 - callback `Function`
   - the callback is passed a single argument `data`, which will be an `Object`
   whose keys are the nutrient field names and values are each a `Number`, as well as the date.
   Eg. `{ 'date': '2014-10-05', 'calories': 2078, 'carbs': 98, 'fat': 119, 'saturated fat': 35, 'protein': 153 }`
 
+The food entries contain the following information
+
+```javascript
+entries: [
+  {
+    name: "Stiegl - Beer",
+    amount: "330 ml"
+  },
+  {
+    name: "Vodka shot",
+    amount: "1 shot"
+  },
+  {
+    name: "Club Mate",
+    amount: "500 ml"
+  }
+]
+```
 
 Example 1:
 
