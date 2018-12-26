@@ -63,6 +63,27 @@ var fetchSingleDate = function(username, date, fields, callback){
     
     //add date to results object
     results.date = date;
+
+    if (fields == 'all' || fields.includes('entries')) {
+      // show the actual food items the user ate that day
+      results["entries"] = []
+
+      var $foodEntries = $('td[class=first]')
+      $foodEntries.each(function(entryIndex, entryElement) {
+        if (entryIndex == 0 || entryIndex == $foodEntries.length - 1) {
+          // The first and last items are headers that we don't need
+          return
+        }
+
+        // The code below won't fully work if there is a `, ` in the name
+        // of the food. For now, this will do the job though
+        var currentEntry = $(entryElement).text().split(", ")
+        results["entries"].push({
+          "name": currentEntry[0],
+          "amount": currentEntry[currentEntry.length - 1]
+        })
+      })
+    }
     
     //check to see if water is included
     if (fields == 'all' || fields.includes('water')) {
@@ -82,9 +103,6 @@ var fetchSingleDate = function(username, date, fields, callback){
         callback(results);
       });
     } else {
-  
-      
-  
       callback(results);
     }
   });
