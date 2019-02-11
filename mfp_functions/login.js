@@ -38,10 +38,9 @@ function login(username) {
         .then(function(res) {
           var $ = cheerio.load(res.text);
 
-          if ($('p:contains("Incorrect username or password")')) {
-            throw new Error("Incorrect username or password");
-          } else {
-            console.log("Successful login!");
+          if ($('p:contains("Incorrect username or password")').length > 0) {
+            throw new Error("Incorrect username or password.");
+          }
           }
         })
         .catch(function(err) {
