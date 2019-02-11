@@ -1,73 +1,53 @@
-'use strict';
+"use strict";
 
-var cheerio = require('cheerio');
-var request = require('request');
+var cheerio = require("cheerio");
+var superagent = require("superagent");
+var agent = superagent.agent();
 
-var userPassword = process.env.USER_PASSWORD;
-
-var loginJar = request.jar();
-
-var options = {
-  url: 'https://www.myfitnesspal.com/account/login',
-  headers: {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
-  },
-  jar: loginJar,
-};
-
-function getAuthToken(callback) {
-
-  var reqOptions = Object.assign(
-    {},
-    options,
-    { method: 'GET' }
-  );
-
-  request(reqOptions, function (error, response, body) {
-    if (error) throw error;
-
-    var $ = cheerio.load(body);
-
-    var utf8Value = $('input[name="utf8"]').val();
-    var authenticityToken = $('input[name="authenticity_token"]').val();
-
-    // Pass the headers along to the next request, along with the required token values
-    callback({ utf8Value: utf8Value, authenticityToken: authenticityToken, headers: response.headers });
-  });
-}
+var password = process.env.USER_PASSWORD;
 
 function login(username) {
+  var utf8Value;
+  var authenticityToken;
 
-  getAuthToken(function (data) {
-    var reqOptions = Object.assign(
-      {},      // start with a new Obj (clone)
-      options, // add our default options
-      {        // add our overrides
-        method: 'POST',
-        form: {
-          utf8: data.utf8Value,
-          authenticity_token: data.authenticityToken,
+  agent
+    .get("https://www.myfitnesspal.com/account/login")
+    .set(
+      "User-Agent",
+      "Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36"
+    )
+    .then(function(res) {
+      var $ = cheerio.load(res.text);
+
+      utf8Value = $('input[name="utf8"]').val();
+      authenticityToken = $('input[name="authenticity_token"]').val();
+    })
+    .catch(function(err) {
+      throw err;
+    })
+    .then(function() {
+      return agent
+        .post("https://www.myfitnesspal.com/account/login")
+        .type("form")
+        .send({
+          utf8: utf8Value,
+          authenticity_token: authenticityToken,
           username: username,
-          password: userPassword,
-        }
-      },
-      // Finally, preserve our headers
-      { headers: data.headers }
-    );
+          password: password
+        })
+        .then(function(res) {
+          var $ = cheerio.load(res.text);
 
-    request(reqOptions, function (error, response, body) {
-      // console.log(JSON.stringify(response));
-      if (error) throw error;
-
-      var $ = cheerio.load(body);
-
-      if ($('p:contains("Incorrect username or password")')) {
-        throw new Error("Incorrect username or password");
-      } else {
-        console.log("Successful login!");
-      }
+          if ($('p:contains("Incorrect username or password")')) {
+            throw new Error("Incorrect username or password");
+          } else {
+            console.log("Successful login!");
+          }
+        })
+        .catch(function(err) {
+          throw err;
+        });
     });
-  });
 }
 
 module.exports = login;
