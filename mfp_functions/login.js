@@ -10,7 +10,7 @@ function login(username) {
   var utf8Value;
   var authenticityToken;
 
-  agent
+  return agent
     .get("https://www.myfitnesspal.com/account/login")
     .set(
       "User-Agent",
