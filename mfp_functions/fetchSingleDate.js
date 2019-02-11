@@ -4,6 +4,10 @@ var request = require('request');
 var cheerio = require('cheerio');
 var helpers = require('./helper-utils');
 
+// Note to self: 
+// https://stackoverflow.com/questions/8726079/how-can-i-scrape-sites-that-require-authentication-using-node-js
+// https://medium.com/rubyinside/a-deep-dive-into-csrf-protection-in-rails-19fa0a42c0ef
+
 
 //some notes: we use the printable diary for most checks, but not water, which can't be fetched here.
 var fetchSingleDate = function(username, date, fields, callback){
