@@ -41,6 +41,16 @@ function login(username) {
           if ($('p:contains("Incorrect username or password")').length > 0) {
             throw new Error("Incorrect username or password.");
           }
+
+          if (
+            $(
+              'p:contains("You have exceeded the maximum number of consecutive failed login attempts")'
+            ).length > 0
+          ) {
+            throw new Error(
+              "You have exceeded the maximum number of consecutive failed login attempts. " +
+                "Please reset your password or wait one hour and try again."
+            );
           }
         })
         .catch(function(err) {
