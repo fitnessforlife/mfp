@@ -3,6 +3,10 @@
 const cheerio = require('cheerio');
 const superagent = require('superagent');
 
+const diaryStatusCheck = require('./diaryStatusCheck.js');
+const fetchSingleDate = require('./fetchSingleDate.js');
+const fetchDateRange = require('./fetchDateRange.js');
+
 const INCORRECT_PASSWORD_MESSAGE = 'Incorrect username or password';
 const MAXIMUM_ATTEMPT_MESSAGE =
   'You have exceeded the maximum number of consecutive failed login attempts';

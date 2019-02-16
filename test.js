@@ -2,7 +2,7 @@
 
 // var request = require('request');
 // var fetchSingleDate = require('./mfp_functions/fetchSingleDate');
-const Session = require('./mfp_functions/login');
+const Session = require('./mfp_functions/session');
 
 // fetchSingleDate('jetknife', '2019-02-07', ['calories'], function (data) {
 //   console.log(data)
