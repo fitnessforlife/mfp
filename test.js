@@ -9,7 +9,10 @@ var login = require("./mfp_functions/login");
 // });
 
 try {
-  login("jetknife");
+  login("jetknife", process.env.USER_PASSWORD).then(function(res) {
+    console.log("returned from login function:");
+    console.log(res);
+  });
 } catch (err) {
   console.error(err);
 }
