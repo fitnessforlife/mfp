@@ -8,11 +8,11 @@ var login = require('./mfp_functions/login');
 //   console.log(data)
 // });
 
-try {
-  login('jetknife', process.env.USER_PASSWORD).then(function(res) {
-    console.log('returned from login function:');
-    console.log(res);
-  });
-} catch (err) {
-  console.error(err);
-}
+(async function doStuff() {
+  try {
+    const agent = await login('jetknife', process.env.USER_PASSWORD);
+    // agent.
+  } catch (err) {
+    console.error(err);
+  }
+})();
