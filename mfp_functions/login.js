@@ -4,6 +4,9 @@ var cheerio = require("cheerio");
 var superagent = require("superagent");
 var agent = superagent.agent();
 
+var INCORRECT_PASSWORD_MESSAGE = "Incorrect username or password";
+var MAXIMUM_ATTEMPT_MESSAGE =
+  "You have exceeded the maximum number of consecutive failed login attempts";
 
 function login(username, password) {
   var utf8Value;
@@ -37,19 +40,14 @@ function login(username, password) {
         .then(function(res) {
           var $ = cheerio.load(res.text);
 
-          if ($('p:contains("Incorrect username or password")').length > 0) {
-            throw new Error("Incorrect username or password.");
+          if (
+            $('p:contains("' + INCORRECT_PASSWORD_MESSAGE + '")').length > 0
+          ) {
+            throw new Error(INCORRECT_PASSWORD_MESSAGE);
           }
 
-          if (
-            $(
-              'p:contains("You have exceeded the maximum number of consecutive failed login attempts")'
-            ).length > 0
-          ) {
-            throw new Error(
-              "You have exceeded the maximum number of consecutive failed login attempts. " +
-                "Please reset your password or wait one hour and try again."
-            );
+          if ($('p:contains("' + MAXIMUM_ATTEMPT_MESSAGE + '")').length > 0) {
+            throw new Error(MAXIMUM_ATTEMPT_MESSAGE);
           }
         })
         .catch(function(err) {
