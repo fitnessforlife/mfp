@@ -14,6 +14,7 @@ class Session {
       'User-Agent':
         'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
     };
+    this.authenticated = false;
   }
 
   login(username, password) {
@@ -84,14 +85,14 @@ class Session {
           if (!res.ok) {
             reject(`Unable to get Auth Token: Status ${res.status}`);
           } else {
-            this.auth = res.body;
-            this.headers = Object.assign(this.headers, {
-              Authorization: `${this.auth.token_type} ${
-                this.auth.access_token
-              }`,
+            // update our request headers with the necessary auth info
+            this.headers = Object.assign({}, this.headers, {
+              Authorization: `${res.body.token_type} ${res.body.access_token}`,
               'mfp-client-id': 'mfp-main-js',
               'mfp-user-id': this.auth.user_id
             });
+            // and add a flag signifying we are authenticated
+            this.authenticated = true;
             resolve(this.agent);
           }
         });
