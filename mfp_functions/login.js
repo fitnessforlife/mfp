@@ -56,7 +56,7 @@ function login(username, password) {
           throw err;
         })
         .then(function() {
-          agent
+          return agent
             .get("https://www.myfitnesspal.com/user/auth_token")
             .query({ refresh: true })
             .then(function(res) {
@@ -65,7 +65,7 @@ function login(username, password) {
                   "Unable to get Auth Token: Status " + res.status
                 );
               } else {
-                console.log(res.body);
+                return res.body;
               }
             });
         });
