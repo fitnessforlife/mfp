@@ -35,12 +35,10 @@ class Session {
 
           this.utf8Value = $('input[name="utf8"]').val();
           this.authenticityToken = $('input[name="authenticity_token"]').val();
+          resolve();
         })
         .catch(err => {
           reject(err);
-        })
-        .then(() => {
-          resolve(this.agent);
         });
     });
   }
@@ -66,12 +64,10 @@ class Session {
           if ($(`p:contains("${MAXIMUM_ATTEMPT_MESSAGE}")`).length > 0) {
             reject(MAXIMUM_ATTEMPT_MESSAGE);
           }
+          resolve();
         })
         .catch(err => {
           reject(err);
-        })
-        .then(() => {
-          resolve(this.agent);
         });
     });
   }
@@ -89,12 +85,15 @@ class Session {
             this.headers = Object.assign({}, this.headers, {
               Authorization: `${res.body.token_type} ${res.body.access_token}`,
               'mfp-client-id': 'mfp-main-js',
-              'mfp-user-id': this.auth.user_id
+              'mfp-user-id': res.body.user_id
             });
             // and add a flag signifying we are authenticated
             this.authenticated = true;
-            resolve(this.agent);
+            resolve();
           }
+        })
+        .catch(err => {
+          reject(err);
         });
     });
   }
