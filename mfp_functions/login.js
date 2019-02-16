@@ -4,9 +4,8 @@ var cheerio = require("cheerio");
 var superagent = require("superagent");
 var agent = superagent.agent();
 
-var password = process.env.USER_PASSWORD;
 
-function login(username) {
+function login(username, password) {
   var utf8Value;
   var authenticityToken;
 
