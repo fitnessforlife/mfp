@@ -1,13 +1,14 @@
 {
-  "node" : true,
+  "node": true,
   "globalstrict": true,
-  "globals"   : {
+  "globals": {
     /* MOCHA */
-    "describe"   : false,
-    "it"         : false,
-    "before"     : false,
-    "beforeEach" : false,
-    "after"      : false,
-    "afterEach"  : false
-  }
+    "describe": false,
+    "it": false,
+    "before": false,
+    "beforeEach": false,
+    "after": false,
+    "afterEach": false
+  },
+  "esversion": 8
 }
