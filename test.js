@@ -10,13 +10,15 @@ const Session = require('./mfp_functions/login');
 
 const session = new Session();
 
-(async function doStuff() {
+async function doStuff() {
   try {
     const agent = await session.login('jetknife', process.env.USER_PASSWORD);
 
-    console.log(session.authToken);
+    console.log(session.headers);
     // agent.
   } catch (err) {
     console.error(err);
   }
-})();
+}
+
+doStuff();

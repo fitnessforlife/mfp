@@ -10,6 +10,10 @@ const MAXIMUM_ATTEMPT_MESSAGE =
 class Session {
   constructor() {
     this.agent = superagent.agent();
+    this.headers = {
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
+    };
   }
 
   login(username, password) {
@@ -24,10 +28,7 @@ class Session {
     return new Promise((resolve, reject) => {
       this.agent
         .get('https://www.myfitnesspal.com/account/login')
-        .set(
-          'User-Agent',
-          'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
-        )
+        .set(this.headers)
         .then(res => {
           const $ = cheerio.load(res.text);
 
@@ -83,7 +84,14 @@ class Session {
           if (!res.ok) {
             reject(`Unable to get Auth Token: Status ${res.status}`);
           } else {
-            this.authToken = res.body;
+            this.auth = res.body;
+            this.headers = Object.assign(this.headers, {
+              Authorization: `${this.auth.token_type} ${
+                this.auth.access_token
+              }`,
+              'mfp-client-id': 'mfp-main-js',
+              'mfp-user-id': this.auth.user_id
+            });
             resolve(this.agent);
           }
         });
@@ -94,8 +102,4 @@ class Session {
 module.exports = Session;
 
 // Later on:
-// var newHeaders = {
-//   Authorization: 'Bearer {token}'.format(token = self.access_token),
-//   'mfp-client-id': 'mfp-main-js',
-//   'mfp-user-id': self.user_id,
-// }
+var newHeaders = {};
